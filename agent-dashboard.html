@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Dashboard | Stackly Technogic</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Dashboard -->
+  <section class="dash-shell">
+    <div class="container">
+      <div class="dash-grid">
+        <!-- Sidebar -->
+        <aside class="dash-side">
+          <a href="index.html" class="dash-logo">
+            <img src="images/logo.webp" alt="Stackly Technogic" class="dash-logo-img">
+          </a>
+          <div class="dash-profile">
+            <div class="dash-avatar" id="dashAvatar">AG</div>
+            <h3 id="dashName">Agent User</h3>
+            <p id="dashEmail">agent@stacklytechnogic.com</p>
+          </div>
+          <nav class="dash-nav">
+            <a href="#" id="dashNavOverview" class="active"><span class="dn-icon">📊</span> Overview</a>
+            <a href="#" id="dashNavListings"><span class="dn-icon">🏢</span> My Listings</a>
+            <a href="#" id="dashNavInquiries"><span class="dn-icon">✉️</span> Inquiries</a>
+            <a href="#" id="dashNavAdd"><span class="dn-icon">➕</span> Add Listing</a>
+            <a href="agents.html"><span class="dn-icon">🤝</span> My Profile</a>
+          </nav>
+          <div class="dash-logout">
+            <a href="#" class="btn-link" style="color:#f87171" onclick="logout(); return false;"><span class="dn-icon">🚪</span> Logout</a>
+          </div>
+        </aside>
+
+        <!-- Main -->
+        <div class="dash-main" id="dashMain">
+          <div class="auth-gate" id="authGate" style="display:none;">
+            <div class="auth-gate-card">
+              <h2>Please Sign In</h2>
+              <p>You need to log in with an agent/broker account to access this dashboard.</p>
+              <a href="login.html" class="btn btn-primary">Go to Login</a>
+              &nbsp;
+              <a href="register.html" class="btn btn-outline">Create Account</a>
+            </div>
+          </div>
+
+          <div id="dashContent" style="display:none;">
+            <!-- Overview -->
+            <div id="panelOverview">
+              <div class="dash-head">
+                <div>
+                  <h2 id="overviewTitle">Welcome to your Dashboard</h2>
+                  <p>Manage your listings, respond to inquiries, and track performance.</p>
+                </div>
+              </div>
+              <div class="dash-stats">
+                <div class="dash-stat"><div class="ds-icon">🏢</div><strong id="statListings">0</strong><span>Active Listings</span></div>
+                <div class="dash-stat"><div class="ds-icon">👁️</div><strong id="statViews">0</strong><span>Total Views</span></div>
+                <div class="dash-stat"><div class="ds-icon">✉️</div><strong id="statInquiries">0</strong><span>Inquiries</span></div>
+                <div class="dash-stat"><div class="ds-icon">📈</div><strong id="statLeads">0</strong><span>Qualified Leads</span></div>
+              </div>
+
+              <div class="dash-panel">
+                <div class="dash-panel-head">
+                  <h3>Latest Inquiries</h3>
+                  <a href="#" onclick="showPanel('inquiries'); return false;">View All</a>
+                </div>
+                <div class="dash-list" id="latestInquiries"></div>
+              </div>
+
+              <div class="dash-panel">
+                <div class="dash-panel-head">
+                  <h3>Performance</h3>
+                  <span style="color:var(--gray);font-size:.8rem;">Last 30 days</span>
+                </div>
+                <div class="dash-metric-row">
+                  <div class="dash-metric"><strong>24.8%</strong><span>Click-through rate on your listings.</span></div>
+                  <div class="dash-metric"><strong>1.6 days</strong><span>Average response time to inquiries.</span></div>
+                  <div class="dash-metric"><strong>18</strong><span>Site visits scheduled this month.</span></div>
+                  <div class="dash-metric"><strong>₹42 Cr</strong><span>Total deal value closed this quarter.</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- My Listings -->
+            <div id="panelListings" style="display:none;">
+              <div class="dash-head">
+                <div>
+                  <h2>My Listings</h2>
+                  <p>Properties you have listed on Stackly.</p>
+                </div>
+                <a href="#" class="btn btn-primary" onclick="showPanel('add'); return false;">+ Add Listing</a>
+              </div>
+              <div class="dash-panel">
+                <div class="dash-table-wrap">
+                  <table class="dash-table">
+                    <thead>
+                      <tr><th>Property</th><th>Location</th><th>Price</th><th>Views</th><th>Status</th><th></th></tr>
+                    </thead>
+                    <tbody id="listingsTable"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Inquiries -->
+            <div id="panelInquiries" style="display:none;">
+              <div class="dash-head">
+                <div>
+                  <h2>Inquiries</h2>
+                  <p>Messages from buyers interested in your listings.</p>
+                </div>
+              </div>
+              <div class="dash-panel">
+                <div class="dash-table-wrap">
+                  <table class="dash-table">
+                    <thead>
+                      <tr><th>Buyer</th><th>Property</th><th>Date</th><th>Status</th><th></th></tr>
+                    </thead>
+                    <tbody id="inquiriesTable"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add Listing -->
+            <div id="panelAdd" style="display:none;">
+              <div class="dash-head">
+                <div>
+                  <h2>Add Listing</h2>
+                  <p>Fill in the details to list a new property.</p>
+                </div>
+              </div>
+              <div class="dash-panel">
+                <div class="auth-form" style="display:flex;flex-direction:column;gap:14px;">
+                  <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+                    <div>
+                      <label class="form-label" for="addTitle">Property Title</label>
+                      <input type="text" id="addTitle" class="form-input" placeholder="e.g. Tech Park Office">
+                    </div>
+                    <div>
+                      <label class="form-label" for="addCity">City</label>
+                      <select id="addCity" class="form-input">
+                        <option value="">Select City</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Bengaluru">Bengaluru</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Coimbatore">Coimbatore</option>
+                        <option value="Kochi">Kochi</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+                    <div>
+                      <label class="form-label" for="addType">Property Type</label>
+                      <select id="addType" class="form-input">
+                        <option value="office">Office</option>
+                        <option value="retail">Retail</option>
+                        <option value="warehouse">Warehouse</option>
+                        <option value="industrial">Industrial</option>
+                        <option value="business-park">Business Park</option>
+                        <option value="land">Land</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="form-label" for="addPurpose">Purpose</label>
+                      <select id="addPurpose" class="form-input">
+                        <option value="sale">For Sale</option>
+                        <option value="lease">For Lease</option>
+                        <option value="rent">For Rent</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+                    <div>
+                      <label class="form-label" for="addPrice">Price (₹ Lakhs or Cr) in Lakhs</label>
+                      <input type="number" id="addPrice" class="form-input" placeholder="e.g. 850">
+                    </div>
+                    <div>
+                      <label class="form-label" for="addSqft">Area (Sq Ft)</label>
+                      <input type="number" id="addSqft" class="form-input" placeholder="e.g. 20000">
+                    </div>
+                  </div>
+                  <div>
+                    <label class="form-label" for="addDesc">Description</label>
+                    <textarea id="addDesc" rows="3" class="form-input" placeholder="Short description of the property"></textarea>
+                  </div>
+                  <div class="dash-actions">
+                    <button type="button" class="btn btn-primary" id="addListingBtn">Publish Listing</button>
+                    <button type="button" class="btn btn-outline" onclick="showPanel('listings'); return false;">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+  <script>
+    const typeL = { office:"Office", retail:"Retail", warehouse:"Warehouse", industrial:"Industrial", "business-park":"Business Park", land:"Land" };
+    const purposeL = { sale:"For Sale", lease:"For Lease", rent:"For Rent" };
+
+    function getAgentListings() { try { return JSON.parse(localStorage.getItem('st_agent_listings') || '[]'); } catch (e) { return []; } }
+    function getInquiries() { try { return JSON.parse(localStorage.getItem('st_inquiries') || '[]'); } catch (e) { return []; } }
+
+    function logout() {
+      localStorage.removeItem('st_session');
+      window.location.href = 'login.html';
+    }
+
+    function showPanel(id) {
+      ['overview','listings','inquiries','add'].forEach(p => document.getElementById('panel' + p.charAt(0).toUpperCase() + p.slice(1)).style.display = 'none');
+      document.getElementById('panel' + id.charAt(0).toUpperCase() + id.slice(1)).style.display = 'block';
+      document.querySelectorAll('.dash-nav a').forEach(a => a.classList.remove('active'));
+      document.getElementById('dashNav' + id.charAt(0).toUpperCase() + id.slice(1)).classList.add('active');
+    }
+
+    document.getElementById('dashNavOverview').addEventListener('click', () => showPanel('overview'));
+    document.getElementById('dashNavListings').addEventListener('click', () => { showPanel('listings'); renderListings(); });
+    document.getElementById('dashNavInquiries').addEventListener('click', () => { showPanel('inquiries'); renderInquiries(); });
+    document.getElementById('dashNavAdd').addEventListener('click', () => showPanel('add'));
+
+    function renderListings() {
+      const mine = getAgentListings();
+      const tbody = document.getElementById('listingsTable');
+      document.getElementById('statListings').textContent = mine.length || properties.length;
+      document.getElementById('statViews').textContent = (mine.length || properties.length) * 45 + 120;
+      document.getElementById('statLeads').textContent = Math.min(Math.ceil((mine.length || properties.length) / 2), 24);
+      if (!mine.length) {
+        tbody.innerHTML = `<tr><td colspan="6" style="color:var(--gray);text-align:center;padding:20px;">No listings yet. <a href="#" style="color:var(--primary);font-weight:700;" onclick="showPanel('add'); return false;">Add your first listing →</a></td></tr>`;
+        return;
+      }
+      tbody.innerHTML = mine.map(p => `
+        <tr>
+          <td><strong>${p.title}</strong></td>
+          <td>${p.city}</td>
+          <td>${p.priceLabel}</td>
+          <td>${p.views || 0}</td>
+          <td><span class="dash-badge db-active">${p.status || 'Active'}</span></td>
+          <td><span class="dash-item-action"><a href="#" class="red" onclick="removeListing(${p.id}); return false;">Delete</a></span></td>
+        </tr>`).join('');
+    }
+
+    function removeListing(id) {
+      const mine = getAgentListings().filter(p => p.id !== id);
+      localStorage.setItem('st_agent_listings', JSON.stringify(mine));
+      renderListings();
+      showToast('Listing deleted.');
+    }
+
+    function renderInquiries() {
+      const inquiries = getInquiries();
+      const tbody = document.getElementById('inquiriesTable');
+      document.getElementById('statInquiries').textContent = inquiries.length;
+      const list = [
+        { buyer:"Priya Sharma", property:"Skyline Corporate Park", date:"2026-09-15" },
+        { buyer:"Rahul Verma", property:"Tech Valley Office Hub", date:"2026-09-14" },
+        { buyer:"Ananya Iyer", property:"Business Bay Towers", date:"2026-09-12" },
+        { buyer:"Vikram Singh", property:"Metro Business Center", date:"2026-09-10" }
+      ];
+      const rows = list.map(q => `
+        <tr>
+          <td><strong>${q.buyer}</strong></td>
+          <td>${q.property}</td>
+          <td>${new Date(q.date).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' })}</td>
+          <td><span class="dash-badge db-pending">Awaiting Response</span></td>
+          <td><span class="dash-item-action"><a href="contact.html">Reply →</a></span></td>
+        </tr>`);
+      tbody.innerHTML = rows.join('') + '<tr><td colspan="5" style="color:var(--gray);text-align:center;padding:16px;">New inquiries will appear here once buyers contact your listings.</td></tr>';
+    }
+
+    function renderLatestInquiries() {
+      const list = document.getElementById('latestInquiries');
+      const items = [
+        { i:"👤", t:"Priya Sharma", s:"Interested in Skyline Corporate Park" },
+        { i:"👤", t:"Rahul Verma", s:"Asked about Tech Valley Office Hub pricing" },
+        { i:"👤", t:"Ananya Iyer", s:"Requested site visit for Business Bay Towers" }
+      ];
+      list.innerHTML = items.map(q => `
+        <div class="dash-item">
+          <div class="dash-item-icon">${q.i}</div>
+          <div class="dash-item-body"><strong>${q.t}</strong><span>${q.s}</span></div>
+          <div class="dash-item-time">Today</div>
+          <div class="dash-item-action"><a href="contact.html">Reply →</a></div>
+        </div>`).join('');
+    }
+
+    document.getElementById('addListingBtn').addEventListener('click', () => {
+      const title = document.getElementById('addTitle').value.trim();
+      const city = document.getElementById('addCity').value;
+      const price = parseFloat(document.getElementById('addPrice').value);
+      const sqft = parseFloat(document.getElementById('addSqft').value);
+      if (!title || !city || !price || !sqft) {
+        showToast('Please fill in title, city, price, and area.');
+        return;
+      }
+      const mine = getAgentListings();
+      const id = Date.now() % 100000;
+      const priceLabel = price >= 100 ? `₹${(price / 100).toFixed(price % 100 ? 2 : 0)} Cr` : `₹${price} L`;
+      mine.push({ id, title, city, type: document.getElementById('addType').value, purpose: document.getElementById('addPurpose').value, price, priceLabel, sqft, views: 0, status: 'Active' });
+      localStorage.setItem('st_agent_listings', JSON.stringify(mine));
+      document.getElementById('addTitle').value = '';
+      document.getElementById('addCity').value = '';
+      document.getElementById('addPrice').value = '';
+      document.getElementById('addSqft').value = '';
+      document.getElementById('addDesc').value = '';
+      showToast('Listing published successfully!');
+      showPanel('listings');
+      renderListings();
+    });
+
+    (function init() {
+      const session = getSession();
+      const gate = document.getElementById('authGate');
+      const content = document.getElementById('dashContent');
+      if (!session) {
+        gate.style.display = 'flex';
+        content.style.display = 'none';
+        document.querySelector('.dash-nav').style.display = 'none';
+        return;
+      }
+      gate.style.display = 'none';
+      content.style.display = 'block';
+      const name = session.name || 'Agent User';
+      const email = session.email || 'agent@stacklytechnogic.com';
+      document.getElementById('dashName').textContent = name;
+      document.getElementById('dashEmail').textContent = email;
+      document.getElementById('dashAvatar').textContent = name.trim().split(/\s+/).map(w => w[0]).join('').toUpperCase().slice(0, 2) || 'AG';
+      document.getElementById('overviewTitle').textContent = 'Welcome back, ' + name;
+      renderListings();
+      renderInquiries();
+      renderLatestInquiries();
+    })();
+  </script>
+</body>
+</html>

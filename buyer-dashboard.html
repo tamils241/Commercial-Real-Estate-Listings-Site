@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buyer Dashboard | Stackly Technogic</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Dashboard -->
+  <section class="dash-shell">
+    <div class="container">
+      <div class="dash-grid">
+        <!-- Sidebar -->
+        <aside class="dash-side">
+          <a href="index.html" class="dash-logo">
+            <img src="images/logo.webp" alt="Stackly Technogic" class="dash-logo-img">
+          </a>
+          <div class="dash-profile">
+            <div class="dash-avatar" id="dashAvatar">BU</div>
+            <h3 id="dashName">Buyer User</h3>
+            <p id="dashEmail">buyer@stacklytechnogic.com</p>
+          </div>
+          <nav class="dash-nav">
+            <a href="#" id="dashNavOverview" class="active"><span class="dn-icon">📊</span> Overview</a>
+            <a href="#" id="dashNavSaved"><span class="dn-icon">⭐</span> Saved Properties</a>
+            <a href="#" id="dashNavInquiries"><span class="dn-icon">✉️</span> My Inquiries</a>
+            <a href="agents.html" id="dashNavAgents"><span class="dn-icon">🤝</span> Find an Agent</a>
+            <a href="listings.html" id="dashNavBrowse"><span class="dn-icon">🏢</span> Browse Listings</a>
+          </nav>
+          <div class="dash-logout">
+            <a href="#" class="btn-link" style="color:#f87171" onclick="logout(); return false;"><span class="dn-icon">🚪</span> Logout</a>
+          </div>
+        </aside>
+
+        <!-- Main -->
+        <div class="dash-main" id="dashMain">
+          <div class="auth-gate" id="authGate" style="display:none;">
+            <div class="auth-gate-card">
+              <h2>Please Sign In</h2>
+              <p>You need to log in or create a buyer account to access your dashboard.</p>
+              <a href="login.html" class="btn btn-primary">Go to Login</a>
+              &nbsp;
+              <a href="register.html" class="btn btn-outline">Create Account</a>
+            </div>
+          </div>
+
+          <div id="dashContent" style="display:none;">
+            <!-- Overview -->
+            <div id="panelOverview">
+              <div class="dash-head">
+                <div>
+                  <h2 id="overviewTitle">Welcome to your Dashboard</h2>
+                  <p>Stay on top of saved listings, inquiries, and new market opportunities.</p>
+                </div>
+              </div>
+              <div class="dash-stats">
+                <div class="dash-stat"><div class="ds-icon">⭐</div><strong id="statSaved">0</strong><span>Saved Properties</span></div>
+                <div class="dash-stat"><div class="ds-icon">✉️</div><strong id="statInquiries">0</strong><span>Inquiries Sent</span></div>
+                <div class="dash-stat"><div class="ds-icon">🔔</div><strong>3</strong><span>New Alerts</span></div>
+                <div class="dash-stat"><div class="ds-icon">💼</div><strong>1,500+</strong><span>Listings Live</span></div>
+              </div>
+
+              <div class="dash-panel">
+                <div class="dash-panel-head">
+                  <h3>Recent Activity</h3>
+                  <a href="#savedPanel" onclick="showPanel('saved'); return false;">View All</a>
+                </div>
+                <div class="dash-list" id="recentActivity"></div>
+              </div>
+
+              <div class="dash-panel">
+                <div class="dash-panel-head">
+                  <h3>Recommended For You</h3>
+                  <a href="listings.html">Browse All →</a>
+                </div>
+                <div class="dash-list" id="recommended"></div>
+              </div>
+            </div>
+
+            <!-- Saved Properties -->
+            <div id="panelSaved" style="display:none;">
+              <div class="dash-head">
+                <div>
+                  <h2>Saved Properties</h2>
+                  <p>Your shortlisted commercial spaces.</p>
+                </div>
+              </div>
+              <div class="dash-panel">
+                <div class="dash-list" id="savedList"></div>
+              </div>
+            </div>
+
+            <!-- Inquiries -->
+            <div id="panelInquiries" style="display:none;">
+              <div class="dash-head">
+                <div>
+                  <h2>My Inquiries</h2>
+                  <p>Track your property inquiries and agent responses.</p>
+                </div>
+              </div>
+              <div class="dash-panel">
+                <div class="dash-table-wrap">
+                  <table class="dash-table">
+                    <thead>
+                      <tr><th>Property</th><th>Type</th><th>Date</th><th>Status</th></tr>
+                    </thead>
+                    <tbody id="inquiriesTable"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-actions" style="margin-top:12px;">
+            <a href="listings.html" class="btn btn-primary">Explore Properties</a>
+            <a href="agents.html" class="btn btn-outline">Talk to an Agent</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+  <script>
+    const typeL = { office:"Office", retail:"Retail", warehouse:"Warehouse", industrial:"Industrial", "business-park":"Business Park", land:"Land" };
+    const purposeL = { sale:"For Sale", lease:"For Lease", rent:"For Rent" };
+
+    function getSaved() { try { return JSON.parse(localStorage.getItem('st_saved') || '[]'); } catch (e) { return []; } }
+    function getInquiries() { try { return JSON.parse(localStorage.getItem('st_inquiries') || '[]'); } catch (e) { return []; } }
+
+    function logout() {
+      localStorage.removeItem('st_session');
+      window.location.href = 'login.html';
+    }
+
+    function showPanel(id) {
+      ['overview','saved','inquiries'].forEach(p => document.getElementById('panel' + p.charAt(0).toUpperCase() + p.slice(1)).style.display = 'none');
+      document.getElementById('panel' + id.charAt(0).toUpperCase() + id.slice(1)).style.display = 'block';
+      document.querySelectorAll('.dash-nav a').forEach(a => a.classList.remove('active'));
+      document.getElementById('dashNav' + id.charAt(0).toUpperCase() + id.slice(1)).classList.add('active');
+    }
+
+    document.getElementById('dashNavOverview').addEventListener('click', () => showPanel('overview'));
+    document.getElementById('dashNavSaved').addEventListener('click', () => { showPanel('saved'); renderSaved(); });
+    document.getElementById('dashNavInquiries').addEventListener('click', () => { showPanel('inquiries'); renderInquiries(); });
+
+    function renderActivity() {
+      const saved = getSaved();
+      const list = document.getElementById('recentActivity');
+      const items = [];
+      saved.slice(0, 3).forEach(p => items.push(`<div class="dash-item"><div class="dash-item-icon">⭐</div><div class="dash-item-body"><strong>Saved · ${p.title}</strong><span>${p.city}, ${p.locality}</span></div><div class="dash-item-time">Just now</div><div class="dash-item-action"><a href="listings.html">View</a></div></div>`));
+      if (!saved.length) items.push(`<div class="dash-item"><div class="dash-item-icon">📌</div><div class="dash-item-body"><strong>No activity yet</strong><span>Save a property or send an inquiry to get started.</span></div></div>`);
+      list.innerHTML = items.join('');
+    }
+
+    function renderRecommended() {
+      const list = document.getElementById('recommended');
+      const recs = window.properties ? properties.slice(0, 3) : [];
+      if (!recs.length) { list.innerHTML = `<p class="dash-plain">Explore our listings to see recommendations.</p>`; return; }
+      list.innerHTML = recs.map(p => `
+        <div class="dash-item">
+          <div class="dash-item-icon">${p.emoji || '🏢'}</div>
+          <div class="dash-item-body"><strong>${p.title}</strong><span>${p.city} · ${p.sqft.toLocaleString()} sqft · ${purposeL[p.purpose]}</span></div>
+          <div class="dash-item-time">${p.priceLabel}</div>
+          <div class="dash-item-action"><a href="listings.html">View →</a></div>
+        </div>`).join('');
+    }
+
+    function renderSaved() {
+      const saved = getSaved();
+      const list = document.getElementById('savedList');
+      document.getElementById('statSaved').textContent = saved.length;
+      if (!saved.length) {
+        list.innerHTML = `<p class="dash-plain">You haven't saved any properties yet. <a href="listings.html" style="color:var(--primary);font-weight:700;">Browse listings →</a></p>`;
+        return;
+      }
+      list.innerHTML = saved.map(p => `
+        <div class="dash-item">
+          <div class="dash-item-icon">⭐</div>
+          <div class="dash-item-body"><strong>${p.title}</strong><span>${p.city}, ${p.locality} · ${typeL[p.type]} · ${p.badge || ''}</span></div>
+          <div class="dash-item-time">${p.priceLabel}</div>
+          <div class="dash-item-action"><a href="#" class="red" onclick="removeSaved(${p.id}); return false;">Remove</a></div>
+        </div>`).join('');
+    }
+
+    function removeSaved(id) {
+      const saved = getSaved().filter(p => p.id !== id);
+      localStorage.setItem('st_saved', JSON.stringify(saved));
+      renderSaved();
+      renderActivity();
+      showToast('Property removed from saved.');
+    }
+
+    function renderInquiries() {
+      const inquiries = getInquiries();
+      const tbody = document.getElementById('inquiriesTable');
+      document.getElementById('statInquiries').textContent = inquiries.length;
+      if (!inquiries.length) {
+        tbody.innerHTML = `<tr><td colspan="4" style="color:var(--gray);text-align:center;padding:20px;">No inquiries yet. Contact an agent from any listing.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = inquiries.reverse().map(q => `
+        <tr>
+          <td><strong>${q.property}</strong><br><span style="color:var(--gray);font-size:.8rem;">${q.location}</span></td>
+          <td>${typeL[q.type] || q.type}</td>
+          <td>${new Date(q.date).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' })}</td>
+          <td><span class="dash-badge db-pending">${q.status || 'In Review'}</span></td>
+        </tr>`).join('');
+    }
+
+    (function init() {
+      const session = getSession();
+      const gate = document.getElementById('authGate');
+      const content = document.getElementById('dashContent');
+      if (!session) {
+        gate.style.display = 'flex';
+        content.style.display = 'none';
+        document.querySelector('.dash-nav').style.display = 'none';
+        return;
+      }
+      gate.style.display = 'none';
+      content.style.display = 'block';
+      const name = session.name || 'Buyer User';
+      const email = session.email || 'buyer@stacklytechnogic.com';
+      document.getElementById('dashName').textContent = name;
+      document.getElementById('dashEmail').textContent = email;
+      document.getElementById('dashAvatar').textContent = name.trim().split(/\s+/).map(w => w[0]).join('').toUpperCase().slice(0, 2) || 'BU';
+      document.getElementById('overviewTitle').textContent = 'Welcome back, ' + name;
+      renderActivity();
+      renderRecommended();
+      renderSaved();
+      renderInquiries();
+    })();
+  </script>
+</body>
+</html>

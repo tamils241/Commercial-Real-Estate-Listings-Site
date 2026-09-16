@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackly | Commercial Real Estate Listings</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.webp" alt="Stackly Technogic" class="nav-logo-img">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="listings.html">Properties</a></li>
+        <li><a href="locations.html">Locations</a></li>
+        <li><a href="agents.html">Agents</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="notif-wrap" id="notifWrap">
+          <button class="notif-btn" id="notifBtn" aria-label="Notifications">🔔<span class="notif-dot" id="notifDot"></span></button>
+          <div class="notif-dropdown" id="notifDropdown">
+            <div class="notif-header">Notifications</div>
+            <div class="notif-item"><strong>New listing</strong><span>Urban Retail Plaza added in Hyderabad.</span></div>
+            <div class="notif-item"><strong>Price update</strong><span>Metro Business Center reduced to ₹8.2 Cr.</span></div>
+            <div class="notif-item"><strong>Market insight</strong><span>New investment report published.</span></div>
+          </div>
+        </div>
+        <a href="login.html" class="btn btn-ghost btn-nav">Login</a>
+        <a href="listings.html" class="btn btn-primary btn-nav btn-list">List Property</a>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="hero-kicker">PREMIUM COMMERCIAL REAL ESTATE</span>
+        <h1 class="hero-title">Find the Right Space to <span class="gradient-text">Grow Your Business</span></h1>
+        <p class="hero-desc">Discover premium commercial properties, strategic business locations, and investment opportunities designed for the future of your business.</p>
+        <div class="hero-btns">
+          <a href="listings.html" class="btn btn-primary">Explore Properties</a>
+          <a href="categories.html" class="btn btn-outline">List Your Property</a>
+        </div>
+        <div class="hero-metrics">
+          <div class="hm-item"><strong>1,500+</strong><span>Properties</span></div>
+          <div class="hm-item"><strong>500+</strong><span>Verified Clients</span></div>
+          <div class="hm-item"><strong>120+</strong><span>Expert Agents</span></div>
+        </div>
+      </div>
+
+      <!-- Interactive 3D Building -->
+      <div class="hero-3d-stage" id="hero3dStage">
+        <div class="hero-3d-viewer" id="hero3dGLB" aria-label="Interactive 3D building viewer"></div>
+        <div class="stage-hint">Drag to rotate • Scroll to zoom</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROPERTY SEARCH ===== -->
+  <section class="search-section" id="searchSection">
+    <div class="container">
+      <div class="search-head">
+        <h2>Find Your Perfect Commercial Property</h2>
+      </div>
+      <div class="search-bar">
+        <div class="filter-group">
+          <label>Location</label>
+          <select id="searchLocation">
+            <option value="all">Search city or area</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Bengaluru">Bengaluru</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Pune">Pune</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Coimbatore">Coimbatore</option>
+            <option value="Kochi">Kochi</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Property Type</label>
+          <select id="searchType">
+            <option value="all">All Types</option>
+            <option value="office">Office</option>
+            <option value="retail">Retail</option>
+            <option value="warehouse">Warehouse</option>
+            <option value="industrial">Industrial</option>
+            <option value="business-park">Business Park</option>
+            <option value="land">Land</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Purpose</label>
+          <select id="searchPurpose">
+            <option value="all">Buy / Rent / Lease</option>
+            <option value="sale">Buy</option>
+            <option value="rent">Rent</option>
+            <option value="lease">Lease</option>
+          </select>
+        </div>
+        <div class="filter-group filter-price">
+          <label>Price Range</label>
+          <div class="price-inputs">
+            <input type="number" id="priceMin" placeholder="Min (₹ Lakhs)" min="0">
+            <span>—</span>
+            <input type="number" id="priceMax" placeholder="Max (₹ Lakhs)" min="0">
+          </div>
+        </div>
+        <button class="btn btn-primary btn-search" id="searchBtn">🔍 Search Properties</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROPERTY CATEGORIES ===== -->
+  <section class="categories-section" id="categories">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-text="Explore Commercial Spaces">Explore Commercial Spaces</h2>
+        <p class="section-subtitle">Find a property that matches your business requirements.</p>
+      </div>
+      <div class="categories-grid" id="categoriesGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED PROPERTIES ===== -->
+  <section class="listings-section" id="listings">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-text="Featured Commercial Properties">Featured Commercial Properties</h2>
+        <p class="section-subtitle">Explore our handpicked selection of premium commercial properties.</p>
+      </div>
+      <div class="listings-grid" id="listingsGrid"></div>
+      <div class="no-results" id="noResults" style="display:none;">
+        <p>No properties match your search criteria. Try adjusting your filters.</p>
+      </div>
+      <div class="center-btn">
+        <button class="btn btn-primary" id="viewAllBtn">View All Properties</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3D PROPERTY SHOWCASE ===== -->
+  <section class="showcase-section" id="showcase">
+    <div class="container">
+      <div class="showcase-grid">
+        <div class="showcase-visual">
+          <div class="showcase-3d-card">
+            <div class="showcase-cube" id="showcaseCube">
+              <div class="scube-face scube-front"><img src="images/The Grand Business Tower.webp" alt="Office space"></div>
+              <div class="scube-face scube-back"><img src="images/Metro Business Center.webp" alt="Office space"></div>
+              <div class="scube-face scube-left"><img src="images/Urban Retail Plaza.webp" alt="Retail space"></div>
+              <div class="scube-face scube-right"><img src="images/Skyline Corporate Park.webp" alt="Corporate park"></div>
+              <div class="scube-face scube-top"><img src="images/Harbor Logistics Warehouse.webp" alt="Warehouse"></div>
+              <div class="scube-face scube-bottom"><img src="images/Tech Valley Office Hub.webp" alt="Office hub"></div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-content">
+          <h2 class="section-title" data-text="Experience Properties in 3D">Experience Properties in 3D</h2>
+          <p class="showcase-text">Explore commercial spaces from every angle with our interactive 3D property experience. Discover building layouts, facilities, entrances, parking areas, and key features before your visit.</p>
+          <div class="showcase-features">
+            <div class="sc-feature"><span class="sc-check">✓</span> Building layouts & floor plans</div>
+            <div class="sc-feature"><span class="sc-check">✓</span> Facilities & amenities</div>
+            <div class="sc-feature"><span class="sc-check">✓</span> Entrances & parking areas</div>
+            <div class="sc-feature"><span class="sc-check">✓</span> Interactive hotspots</div>
+          </div>
+          <div class="showcase-btns">
+            <a href="404.html" class="btn btn-primary">Explore 3D Property</a>
+            <a href="listings.html" class="btn btn-outline">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY CHOOSE STACKLY ===== -->
+  <section class="why-section" id="why">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-text="Your Business Deserves the Right Location">Your Business Deserves the Right Location</h2>
+      </div>
+      <div class="why-grid" id="whyGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== STATISTICS ===== -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-box"><span class="stat-number" data-target="1500">0</span><span class="stat-plus">+</span><span class="stat-label">Properties Listed</span></div>
+        <div class="stat-box"><span class="stat-number" data-target="500">0</span><span class="stat-plus">+</span><span class="stat-label">Verified Clients</span></div>
+        <div class="stat-box"><span class="stat-number" data-target="120">0</span><span class="stat-plus">+</span><span class="stat-label">Expert Agents</span></div>
+        <div class="stat-box"><span class="stat-number" data-target="25">0</span><span class="stat-plus">+</span><span class="stat-label">Prime Locations</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== POPULAR LOCATIONS ===== -->
+  <section class="locations-section" id="locations">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-text="Explore Prime Business Locations">Explore Prime Business Locations</h2>
+        <p class="section-subtitle">Discover commercial opportunities across India's leading business destinations.</p>
+      </div>
+      <div class="locations-grid" id="locationsGrid"></div>
+      <div class="center-btn">
+        <button class="btn btn-outline" onclick="location.href='#listings'">Explore All Locations</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW STACKLY WORKS ===== -->
+  <section class="how-section" id="how">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-text="Find. Explore. Invest.">Find. Explore. Invest.</h2>
+      </div>
+      <div class="how-grid" id="howGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== BUSINESS CTA ===== -->
+  <section class="cta-section" id="cta">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Ready to Find Your Next Business Location?</h2>
+        <p>Explore premium commercial properties with Stackly and take the next step toward your business goals.</p>
+        <div class="cta-btns">
+          <a href="listings.html" class="btn btn-primary">Explore Properties</a>
+          <a href="contact.html" class="btn btn-outline-light">Talk to an Expert</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-text="What Our Clients Say">What Our Clients Say</h2>
+      </div>
+      <div class="testimonial-track" id="testimonialTrack"></div>
+    </div>
+  </section>
+
+  <!-- ===== LATEST INSIGHTS ===== -->
+  <section class="insights-section" id="insights">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-text="Commercial Real Estate Insights">Commercial Real Estate Insights</h2>
+      </div>
+      <div class="insights-grid" id="insightsGrid"></div>
+      <div class="center-btn">
+        <button class="btn btn-primary" id="insightsBtn">View All Insights</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEWSLETTER ===== -->
+  <section class="newsletter-section" id="newsletter">
+    <div class="container">
+      <div class="newsletter-card">
+        <h2>Stay Ahead of the Property Market</h2>
+        <p>Get new property listings, market insights, and commercial real-estate updates directly in your inbox.</p>
+        <div class="newsletter-form">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email address">
+          <button class="btn btn-primary" id="newsletterBtn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <a href="index.html"><img src="images/logo.webp" alt="Stackly Technogic" class="footer-logo-img"></a>
+          </div>
+          <p>Smart commercial real estate solutions for businesses, investors, and property owners.</p>
+          <div class="footer-social">
+            <a href="404.html" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="404.html" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.77 7.74L23.2 22h-6.23l-4.88-6.38L6.5 22H3.35l7.24-8.28L1 2h6.39l4.41 5.83L18.9 2Zm-1.08 18.13h1.72L6.9 3.78H5.06l12.76 16.35Z"/></svg></a>
+            <a href="404.html" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07ZM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.88 5.88 0 0 0-2.13 1.38A5.88 5.88 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.8.72 1.47 1.38 2.13a5.88 5.88 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 0 0 2.13-1.38 5.88 5.88 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.88 5.88 0 0 0-1.38-2.13A5.88 5.88 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0Zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84Zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4Zm6.41-11.85a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44Z"/></svg></a>
+            <a href="404.html" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67h-3.56V9h3.42v1.56h.05a3.75 3.75 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="listings.html">Properties</a></li>
+            <li><a href="locations.html">Locations</a></li>
+            <li><a href="agents.html">Agents</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Property Types</h4>
+          <ul>
+            <li><a href="listings.html">Office</a></li>
+            <li><a href="listings.html">Retail</a></li>
+            <li><a href="listings.html">Warehouse</a></li>
+            <li><a href="listings.html">Industrial</a></li>
+            <li><a href="listings.html">Business Park</a></li>
+            <li><a href="listings.html">Land</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:info@stacklytechnogic.com">info@stacklytechnogic.com</a></li>
+            <li><a href="tel:+919840012345">+91 98400 12345</a></li>
+            <li>No. 12, Business Avenue, Anna Salai, Chennai</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Stackly. All Rights Reserved.</p>
+        <div class="footer-legal">
+          <a href="404.html">Privacy Policy</a><span>|</span><a href="404.html">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== PROPERTY MODAL ===== -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="propertyModal">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div class="modal-image" id="modalImage"></div>
+      <div class="modal-body">
+        <span class="modal-tag" id="modalTag"></span>
+        <h3 id="modalTitle"></h3>
+        <p class="modal-location" id="modalLocation"></p>
+        <div class="modal-details" id="modalDetails"></div>
+        <p class="modal-description" id="modalDescription"></p>
+        <div class="modal-features" id="modalFeatures"></div>
+        <div class="modal-price" id="modalPrice"></div>
+        <button class="btn btn-primary btn-full" id="modalInquiry">Contact Agent</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="model-data.js"></script>
+  <script src="viewer3d.js"></script>
+</body>
+</html>

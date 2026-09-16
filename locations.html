@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Locations | Stackly Technogic</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.webp" alt="Stackly Technogic" class="nav-logo-img">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="listings.html">Properties</a></li>
+        <li><a href="locations.html" class="active">Locations</a></li>
+        <li><a href="agents.html">Agents</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="notif-wrap" id="notifWrap">
+          <button class="notif-btn" id="notifBtn" aria-label="Notifications">🔔<span class="notif-dot" id="notifDot"></span></button>
+          <div class="notif-dropdown" id="notifDropdown">
+            <div class="notif-header">Notifications</div>
+            <div class="notif-item"><strong>New listing</strong><span>Urban Retail Plaza added in Hyderabad.</span></div>
+            <div class="notif-item"><strong>Price update</strong><span>Metro Business Center reduced to ₹8.2 Cr.</span></div>
+            <div class="notif-item"><strong>Market insight</strong><span>New investment report published.</span></div>
+          </div>
+        </div>
+        <a href="login.html" class="btn btn-ghost btn-nav">Login</a>
+        <a href="contact.html" class="btn btn-primary btn-nav btn-list">List Property</a>
+      </div>
+      <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="page-kicker">Prime Business Destinations</span>
+      <h1>Explore <span class="gradient-text">Prime Business Locations</span></h1>
+      <p>Discover commercial opportunities across India's leading business destinations. Click a location to see available properties.</p>
+      <div class="page-metrics">
+        <div class="pm-item"><strong>8</strong><span>Cities</span></div>
+        <div class="pm-item"><strong>25+</strong><span>Locations</span></div>
+        <div class="pm-item"><strong>1,500+</strong><span>Properties</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Property Search -->
+  <section class="search-section">
+    <div class="container">
+      <div class="search-head">
+        <h2>Browse Properties by Location</h2>
+      </div>
+      <div class="search-bar">
+        <div class="filter-group">
+          <label>Location</label>
+          <select id="searchLocation">
+            <option value="all">Search city or area</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Bengaluru">Bengaluru</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Pune">Pune</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Coimbatore">Coimbatore</option>
+            <option value="Kochi">Kochi</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Property Type</label>
+          <select id="searchType">
+            <option value="all">All Types</option>
+            <option value="office">Office</option>
+            <option value="retail">Retail</option>
+            <option value="warehouse">Warehouse</option>
+            <option value="industrial">Industrial</option>
+            <option value="business-park">Business Park</option>
+            <option value="land">Land</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Purpose</label>
+          <select id="searchPurpose">
+            <option value="all">Buy / Rent / Lease</option>
+            <option value="sale">Buy</option>
+            <option value="rent">Rent</option>
+            <option value="lease">Lease</option>
+          </select>
+        </div>
+        <button class="btn btn-primary btn-search" id="searchBtn">🔍 Search Properties</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations -->
+  <section class="locations-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-text="Explore Prime Business Locations">Explore Prime Business Locations</h2>
+        <p class="section-subtitle">Click a location to view its available commercial properties.</p>
+      </div>
+      <div class="locations-grid" id="locationsGrid"></div>
+    </div>
+  </section>
+
+  <!-- Coverage Map -->
+  <section class="map-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-text="Our Coverage">Our Coverage Across India</h2>
+        <p class="section-subtitle">Stackly operates across 8 major commercial hubs spanning North, South, and West India.</p>
+      </div>
+      <div class="map-embed">
+        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1&z=5&q=India&ll=20.5,78.9" title="Stackly Technogic Office Locations Across India" width="100%" height="480" style="border:0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- City Spotlights -->
+  <section class="city-spotlights">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-text="City Spotlights">City Spotlights</h2>
+        <p class="section-subtitle">Deep-dive into each market — key areas, average prices, and investment potential.</p>
+      </div>
+
+      <div class="spotlight-grid">
+        <!-- Chennai -->
+        <div class="spotlight-card spotlight-featured">
+          <div class="spotlight-badge">Headquarters</div>
+          <div class="spotlight-header">
+            <span class="spotlight-icon">🏛</span>
+            <div>
+              <h3>Chennai</h3>
+              <span class="spotlight-tag">South India's Business Capital</span>
+            </div>
+          </div>
+          <div class="spotlight-stats">
+            <div class="spot-stat"><span class="spot-val">350+</span><span class="spot-label">Properties</span></div>
+            <div class="spot-stat"><span class="spot-val">₹6.5K</span><span class="spot-label">Avg/sqft</span></div>
+            <div class="spot-stat"><span class="spot-val">12%</span><span class="spot-label">Yield</span></div>
+          </div>
+          <p class="spotlight-desc">Chennai's thriving IT corridor, anchored by OMR and Sholinganallur, offers premium Grade-A office spaces. T. Nagar and Anna Salai remain retail hotspots with high footfall, while industrial demand surges along GST Road.</p>
+          <ul class="spotlight-areas">
+            <li><strong>Office:</strong> OMR, Sholinganallur, Guindy, Nungambakkam</li>
+            <li><strong>Retail:</strong> T. Nagar, Anna Nagar, Velachery, Express Avenue</li>
+            <li><strong>Warehouse:</strong> GST Road, Sriperumbudur, Oragadam</li>
+            <li><strong>Industrial:</strong> Ambattur, Maraimalai Nagar, Oragadam SEZ</li>
+          </ul>
+          <a href="listings.html" class="btn btn-primary">Explore Chennai Properties</a>
+        </div>
+
+        <!-- Bengaluru -->
+        <div class="spotlight-card">
+          <div class="spotlight-header">
+            <span class="spotlight-icon">🚀</span>
+            <div>
+              <h3>Bengaluru</h3>
+              <span class="spotlight-tag">India's Silicon Valley</span>
+            </div>
+          </div>
+          <div class="spotlight-stats">
+            <div class="spot-stat"><span class="spot-val">420+</span><span class="spot-label">Properties</span></div>
+            <div class="spot-stat"><span class="spot-val">₹8.2K</span><span class="spot-label">Avg/sqft</span></div>
+            <div class="spot-stat"><span class="spot-val">11%</span><span class="spot-label">Yield</span></div>
+          </div>
+          <p class="spotlight-desc">Home to India's largest IT/ITES cluster, Bengaluru leads in office leasing demand. Whitefield and Electronic City are IT hubs, while MG Road and Indiranagar command premium retail rents.</p>
+          <ul class="spotlight-areas">
+            <li><strong>Office:</strong> Whitefield, Electronic City, Outer Ring Road, Koramangala</li>
+            <li><strong>Retail:</strong> MG Road, Indiranagar, Commercial Street, Brigade Road</li>
+          </ul>
+          <a href="listings.html" class="btn btn-outline">Explore Bengaluru</a>
+        </div>
+
+        <!-- Hyderabad -->
+        <div class="spotlight-card">
+          <div class="spotlight-header">
+            <span class="spotlight-icon">💎</span>
+            <div>
+              <h3>Hyderabad</h3>
+              <span class="spotlight-tag">Fastest-Growing Tech Hub</span>
+            </div>
+          </div>
+          <div class="spotlight-stats">
+            <div class="spot-stat"><span class="spot-val">280+</span><span class="spot-label">Properties</span></div>
+            <div class="spot-stat"><span class="spot-val">₹5.8K</span><span class="spot-label">Avg/sqft</span></div>
+            <div class="spot-stat"><span class="spot-val">13%</span><span class="spot-label">Yield</span></div>
+          </div>
+          <p class="spotlight-desc">Hyderabad's IT corridor in Gachibowli and HITEC City draws Fortune 500 firms. Raidurg and Nanakramguda offer newly built Grade-A campuses, while Banjara Hills remains the premium retail address.</p>
+          <ul class="spotlight-areas">
+            <li><strong>Office:</strong> Gachibowli, HITEC City, Raidurg, Nanakramguda</li>
+            <li><strong>Retail:</strong> Banjara Hills, Jubilee Hills, Ameerpet, Miyapur</li>
+          </ul>
+          <a href="listings.html" class="btn btn-outline">Explore Hyderabad</a>
+        </div>
+
+        <!-- Mumbai -->
+        <div class="spotlight-card">
+          <div class="spotlight-header">
+            <span class="spotlight-icon">🏙</span>
+            <div>
+              <h3>Mumbai</h3>
+              <span class="spotlight-tag">Financial Capital of India</span>
+            </div>
+          </div>
+          <div class="spotlight-stats">
+            <div class="spot-stat"><span class="spot-val">310+</span><span class="spot-label">Properties</span></div>
+            <div class="spot-stat"><span class="spot-val">₹15K</span><span class="spot-label">Avg/sqft</span></div>
+            <div class="spot-stat"><span class="spot-val">9%</span><span class="spot-label">Yield</span></div>
+          </div>
+          <p class="spotlight-desc">BKC and Nariman Point are Mumbai's premier corporate addresses. Andheri and Powai house growing IT parks, while Lower Parel drives mixed-use development with luxury retail and offices.</p>
+          <ul class="spotlight-areas">
+            <li><strong>Office:</strong> BKC, Nariman Point, Andheri East, Powai</li>
+            <li><strong>Retail:</strong> Lower Parel, Linking Road, Hill Road, Colaba</li>
+          </ul>
+          <a href="listings.html" class="btn btn-outline">Explore Mumbai</a>
+        </div>
+
+        <!-- Pune -->
+        <div class="spotlight-card">
+          <div class="spotlight-header">
+            <span class="spotlight-icon">🎓</span>
+            <div>
+              <h3>Pune</h3>
+              <span class="spotlight-tag">Emerging Office Market</span>
+            </div>
+          </div>
+          <div class="spotlight-stats">
+            <div class="spot-stat"><span class="spot-val">180+</span><span class="spot-label">Properties</span></div>
+            <div class="spot-stat"><span class="spot-val">₹5.2K</span><span class="spot-label">Avg/sqft</span></div>
+            <div class="spot-stat"><span class="spot-val">12%</span><span class="spot-label">Yield</span></div>
+          </div>
+          <p class="spotlight-desc">Pune's Hinjewadi and Kharadi IT parks offer competitive office rates with strong talent pipelines. Viman Nagar and Koregaon Park lead in retail and mixed-use development.</p>
+          <ul class="spotlight-areas">
+            <li><strong>Office:</strong> Hinjewadi, Kharadi, Magarpatta, Kalyani Nagar</li>
+            <li><strong>Retail:</strong> Viman Nagar, Koregaon Park, FC Road, Baner</li>
+          </ul>
+          <a href="listings.html" class="btn btn-outline">Explore Pune</a>
+        </div>
+
+        <!-- Coimbatore -->
+        <div class="spotlight-card">
+          <div class="spotlight-header">
+            <span class="spotlight-icon">🏭</span>
+            <div>
+              <h3>Coimbatore</h3>
+              <span class="spotlight-tag">South India's Industrial Hub</span>
+            </div>
+          </div>
+          <div class="spotlight-stats">
+            <div class="spot-stat"><span class="spot-val">120+</span><span class="spot-label">Properties</span></div>
+            <div class="spot-stat"><span class="spot-val">₹3.5K</span><span class="spot-label">Avg/sqft</span></div>
+            <div class="spot-stat"><span class="spot-val">14%</span><span class="spot-label">Yield</span></div>
+          </div>
+          <p class="spotlight-desc">A leading manufacturing and textile hub, Coimbatore's Peelamedu and Saravanampatty corridor hosts IT parks and industrial estates. Affordable land rates make it ideal for warehouses and factories.</p>
+          <ul class="spotlight-areas">
+            <li><strong>Office:</strong> Peelamedu, RS Puram, Avinashi Road</li>
+            <li><strong>Industrial:</strong> SIDCO Estate, Perundurai, Kumarapalayam</li>
+          </ul>
+          <a href="listings.html" class="btn btn-outline">Explore Coimbatore</a>
+        </div>
+
+        <!-- Kochi -->
+        <div class="spotlight-card">
+          <div class="spotlight-header">
+            <span class="spotlight-icon">🌴</span>
+            <div>
+              <h3>Kochi</h3>
+              <span class="spotlight-tag">Gateway to Kerala's Economy</span>
+            </div>
+          </div>
+          <div class="spotlight-stats">
+            <div class="spot-stat"><span class="spot-val">90+</span><span class="spot-label">Properties</span></div>
+            <div class="spot-stat"><span class="spot-val">₹4.1K</span><span class="spot-label">Avg/sqft</span></div>
+            <div class="spot-stat"><span class="spot-val">13%</span><span class="spot-label">Yield</span></div>
+          </div>
+          <p class="spotlight-desc">Kakkanad and Infopark drive Kochi's IT sector, while Marine Drive and MG Road offer premium retail. Kochi's Smart City project is attracting tech startups and global firms alike.</p>
+          <ul class="spotlight-areas">
+            <li><strong>Office:</strong> Kakkanad, Infopark, Smart City, Edappally</li>
+            <li><strong>Retail:</strong> Marine Drive, MG Road, Lulu Mall, Palarivattom</li>
+          </ul>
+          <a href="listings.html" class="btn btn-outline">Explore Kochi</a>
+        </div>
+
+        <!-- Delhi -->
+        <div class="spotlight-card">
+          <div class="spotlight-header">
+            <span class="spotlight-icon">🕌</span>
+            <div>
+              <h3>Delhi NCR</h3>
+              <span class="spotlight-tag">National Capital Region</span>
+            </div>
+          </div>
+          <div class="spotlight-stats">
+            <div class="spot-stat"><span class="spot-val">390+</span><span class="spot-label">Properties</span></div>
+            <div class="spot-stat"><span class="spot-val">₹12K</span><span class="spot-label">Avg/sqft</span></div>
+            <div class="spot-stat"><span class="spot-val">8%</span><span class="spot-label">Yield</span></div>
+          </div>
+          <p class="spotlight-desc">Cyber City and Golf Course Road in Gurugram lead NCR's Grade-A market. Connaught Place and Nehru Place remain Delhi's core commercial addresses, while Noida's Expressway corridor is rapidly expanding.</p>
+          <ul class="spotlight-areas">
+            <li><strong>Office:</strong> Cyber City, Golf Course Road, Nehru Place, Noida SEZ</li>
+            <li><strong>Retail:</strong> Connaught Place, Khan Market, Aerocity, Vasant Kunj</li>
+          </ul>
+          <a href="listings.html" class="btn btn-outline">Explore Delhi NCR</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Best Locations by Property Type -->
+  <section class="loc-by-type">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-text="Best Locations by Property Type">Best Locations by Property Type</h2>
+        <p class="section-subtitle">Not sure which city to target? Start with the property type you need.</p>
+      </div>
+      <div class="loc-type-grid">
+        <div class="loc-type-card">
+          <span class="loc-type-icon">🏢</span>
+          <h4>Office Space</h4>
+          <p>Premium Grade-A offices in IT corridors and CBDs</p>
+          <div class="loc-type-picks">
+            <span>Bengaluru — Whitefield</span>
+            <span>Hyderabad — Gachibowli</span>
+            <span>Chennai — OMR</span>
+            <span>Pune — Hinjewadi</span>
+          </div>
+        </div>
+        <div class="loc-type-card">
+          <span class="loc-type-icon">🛍</span>
+          <h4>Retail</h4>
+          <p>High-footfall shops, showrooms, and mall spaces</p>
+          <div class="loc-type-picks">
+            <span>Mumbai — Lower Parel</span>
+            <span>Chennai — T. Nagar</span>
+            <span>Bengaluru — MG Road</span>
+            <span>Delhi — Connaught Place</span>
+          </div>
+        </div>
+        <div class="loc-type-card">
+          <span class="loc-type-icon">🏭</span>
+          <h4>Warehouse</h4>
+          <p>Logistics parks and distribution centres near highways</p>
+          <div class="loc-type-picks">
+            <span>Chennai — Sriperumbudur</span>
+            <span>Coimbatore — Perundurai</span>
+            <span>Hyderabad — Shamshabad</span>
+            <span>Pune — Chakan</span>
+          </div>
+        </div>
+        <div class="loc-type-card">
+          <span class="loc-type-icon">🏗</span>
+          <h4>Industrial</h4>
+          <p>Manufacturing units, SEZ plots, and factory sheds</p>
+          <div class="loc-type-picks">
+            <span>Coimbatore — SIDCO Estate</span>
+            <span>Chennai — Oragadam SEZ</span>
+            <span>Pune — Pimpri-Chinchwad</span>
+            <span>Hyderabad — Patancheru</span>
+          </div>
+        </div>
+        <div class="loc-type-card">
+          <span class="loc-type-icon">🌳</span>
+          <h4>Business Park</h4>
+          <p>Integrated campuses with amenities and campus-style layouts</p>
+          <div class="loc-type-picks">
+            <span>Bengaluru — Manyata Tech Park</span>
+            <span>Hyderabad — HITEC City</span>
+            <span>Chennai — DLF IT Park</span>
+            <span>Delhi — Cyber City</span>
+          </div>
+        </div>
+        <div class="loc-type-card">
+          <span class="loc-type-icon">🌾</span>
+          <h4>Land</h4>
+          <p>Development plots, agricultural conversions, and industrial land</p>
+          <div class="loc-type-picks">
+            <span>Coimbatore — Kumarapalayam</span>
+            <span>Pune — Wagholi</span>
+            <span>Chennai — Maraimalai Nagar</span>
+            <span>Hyderabad — Adibatla</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location Stats -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-box"><span class="stat-number" data-target="1500">0</span><span class="stat-plus">+</span><span class="stat-label">Properties Listed</span></div>
+        <div class="stat-box"><span class="stat-number" data-target="8">0</span><span class="stat-plus"></span><span class="stat-label">Cities Covered</span></div>
+        <div class="stat-box"><span class="stat-number" data-target="25">0</span><span class="stat-plus">+</span><span class="stat-label">Prime Locations</span></div>
+        <div class="stat-box"><span class="stat-number" data-target="120">0</span><span class="stat-plus">+</span><span class="stat-label">Local Experts</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Properties by Location -->
+  <section class="listings-section" id="listings">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-text="Properties in This Location">Properties in This Location</h2>
+        <p class="section-subtitle">Selected by your location filters below.</p>
+      </div>
+      <div class="listings-grid" id="listingsGrid"></div>
+      <div class="no-results" id="noResults" style="display:none;">
+        <p>No properties match your search criteria. Try adjusting your filters.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Looking for a Specific Location?</h2>
+        <p>Our consultants cover all major commercial markets. Tell us where you want to be.</p>
+        <div class="cta-btns">
+          <a href="contact.html" class="btn btn-primary">Talk to an Expert</a>
+          <a href="agents.html" class="btn btn-outline-light">Meet Our Agents</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo"><a href="index.html"><img src="images/logo.webp" alt="Stackly Technogic" class="footer-logo-img"></a></div>
+          <p>Smart commercial real estate solutions for businesses, investors, and property owners.</p>
+          <div class="footer-social">
+            <a href="404.html" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="404.html" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.77 7.74L23.2 22h-6.23l-4.88-6.38L6.5 22H3.35l7.24-8.28L1 2h6.39l4.41 5.83L18.9 2Zm-1.08 18.13h1.72L6.9 3.78H5.06l12.76 16.35Z"/></svg></a>
+            <a href="404.html" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07ZM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.88 5.88 0 0 0-2.13 1.38A5.88 5.88 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.8.72 1.47 1.38 2.13a5.88 5.88 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 0 0 2.13-1.38 5.88 5.88 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.88 5.88 0 0 0-1.38-2.13A5.88 5.88 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0Zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84Zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4Zm6.41-11.85a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44Z"/></svg></a>
+            <a href="404.html" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67h-3.56V9h3.42v1.56h.05a3.75 3.75 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="listings.html">Properties</a></li>
+            <li><a href="locations.html">Locations</a></li>
+            <li><a href="agents.html">Agents</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Property Types</h4>
+          <ul>
+            <li><a href="listings.html">Office</a></li>
+            <li><a href="listings.html">Retail</a></li>
+            <li><a href="listings.html">Warehouse</a></li>
+            <li><a href="listings.html">Industrial</a></li>
+            <li><a href="listings.html">Business Park</a></li>
+            <li><a href="listings.html">Land</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:info@stacklytechnogic.com">info@stacklytechnogic.com</a></li>
+            <li><a href="tel:+919840012345">+91 98400 12345</a></li>
+            <li>No. 12, Business Avenue, Anna Salai, Chennai</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Stackly. All Rights Reserved.</p>
+        <div class="footer-legal">
+          <a href="404.html">Privacy Policy</a><span>|</span><a href="404.html">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Property Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="propertyModal">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div class="modal-image" id="modalImage"></div>
+      <div class="modal-body">
+        <span class="modal-tag" id="modalTag"></span>
+        <h3 id="modalTitle"></h3>
+        <p class="modal-location" id="modalLocation"></p>
+        <div class="modal-details" id="modalDetails"></div>
+        <p class="modal-description" id="modalDescription"></p>
+        <div class="modal-features" id="modalFeatures"></div>
+        <div class="modal-price" id="modalPrice"></div>
+        <button class="btn btn-primary btn-full" id="modalInquiry">Contact Agent</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

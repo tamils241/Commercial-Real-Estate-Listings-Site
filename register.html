@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Stackly Technogic</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="auth-body">
+
+  <!-- Auth Container -->
+  <div class="auth-container">
+    <!-- Left: 3D Branding -->
+    <div class="auth-visual">
+      <div class="auth-bg-shapes">
+        <div class="auth-shape auth-shape-1"></div>
+        <div class="auth-shape auth-shape-2"></div>
+        <div class="auth-shape auth-shape-3"></div>
+      </div>
+      <div class="auth-brand-content">
+        <div class="auth-3d-logo">
+          <div class="auth-3d-cube" id="authCube">
+            <div class="cube-face cube-front">ST</div>
+            <div class="cube-face cube-back">ST</div>
+            <div class="cube-face cube-left">ST</div>
+            <div class="cube-face cube-right">ST</div>
+            <div class="cube-face cube-top">ST</div>
+            <div class="cube-face cube-bottom">ST</div>
+          </div>
+        </div>
+        <h1 class="auth-3d-title">
+          <span class="auth-word-stackly">Stackly</span>
+          <span class="auth-word-technogic">Technogic</span>
+        </h1>
+        <p class="auth-tagline">Join the future of commercial real estate</p>
+        <div class="auth-features-list">
+          <div class="auth-feature-item">
+            <span class="auth-feature-dot"></span>
+            <span>Browse 500+ premium properties</span>
+          </div>
+          <div class="auth-feature-item">
+            <span class="auth-feature-dot"></span>
+            <span>Connect with expert agents</span>
+          </div>
+          <div class="auth-feature-item">
+            <span class="auth-feature-dot"></span>
+            <span>Schedule property tours online</span>
+          </div>
+          <div class="auth-feature-item">
+            <span class="auth-feature-dot"></span>
+            <span>100% free to get started</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Register Form -->
+    <div class="auth-form-wrapper">
+      <a href="index.html" class="auth-back-home" aria-label="Back to Home">← Back to Home</a>
+      <div class="auth-form-container">
+        <div class="auth-form-header">
+          <h2>Create Account</h2>
+          <p>Get started with your free account today</p>
+        </div>
+
+        <!-- Social Login -->
+        <div class="social-login">
+          <a href="#" class="social-btn" onclick="socialLogin('google'); return false;">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            Sign up with Google
+          </a>
+          <a href="#" class="social-btn" onclick="socialLogin('microsoft'); return false;">
+            <svg viewBox="0 0 24 24" width="20" height="20"><rect x="1" y="1" width="10" height="10" fill="#F25022"/><rect x="13" y="1" width="10" height="10" fill="#7FBA00"/><rect x="1" y="13" width="10" height="10" fill="#00A4EF"/><rect x="13" y="13" width="10" height="10" fill="#FFB900"/></svg>
+            Sign up with Microsoft
+          </a>
+        </div>
+
+        <div class="auth-divider">
+          <span>or register with email</span>
+        </div>
+
+        <form class="auth-form" id="registerForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="regFirstName">First Name</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" id="regFirstName" placeholder="John" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="regLastName">Last Name</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" id="regLastName" placeholder="Doe" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="regEmail">Email Address</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <input type="email" id="regEmail" placeholder="you@company.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="regPhone">Phone Number</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <input type="tel" id="regPhone" placeholder="+1 (555) 000-0000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="regPassword">Password</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="regPassword" placeholder="Create a strong password" required minlength="8">
+              <button type="button" class="toggle-password" onclick="togglePassword('regPassword', this)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="eye-open"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="eye-closed" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
+            <div class="password-strength" id="passwordStrength">
+              <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+              <span class="strength-text" id="strengthText"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="regConfirmPassword">Confirm Password</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="regConfirmPassword" placeholder="Confirm your password" required>
+            </div>
+            <span class="field-error" id="confirmError"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="account-type-label">Account Type</label>
+            <div class="account-type-options">
+              <label class="account-type-card">
+                <input type="radio" name="accountType" value="buyer">
+                <div class="account-type-inner">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                  <strong>Buyer / Tenant</strong>
+                  <span>Search & inquire properties</span>
+                </div>
+              </label>
+              <label class="account-type-card">
+                <input type="radio" name="accountType" value="agent">
+                <div class="account-type-inner">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  <strong>Agent / Broker</strong>
+                  <span>List & manage properties</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <label class="checkbox-wrapper">
+            <input type="checkbox" id="agreeTerms" required>
+            <span class="checkmark"></span>
+            I agree to the <a href="404.html" class="auth-link">Terms of Service</a> and <a href="#" class="auth-link">Privacy Policy</a>
+          </label>
+
+          <button type="submit" class="btn btn-primary btn-full auth-submit">
+            <span>Create Account</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </form>
+
+        <div class="auth-footer-text">
+          Already have an account? <a href="login.html" class="auth-link">Sign In</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const password = document.getElementById('regPassword').value;
+      const confirm = document.getElementById('regConfirmPassword').value;
+      const errorEl = document.getElementById('confirmError');
+      const firstName = document.getElementById('regFirstName').value;
+      const lastName = document.getElementById('regLastName').value;
+      const email = document.getElementById('regEmail').value;
+      const accountTypeInput = document.querySelector('input[name="accountType"]:checked');
+      if (!accountTypeInput) {
+        alert('Please select an account type: Buyer/Tenant or Agent/Broker.');
+        return;
+      }
+      const accountType = accountTypeInput.value;
+
+      if (password !== confirm) {
+        errorEl.textContent = 'Passwords do not match';
+        return;
+      }
+      errorEl.textContent = '';
+
+      const name = (firstName + ' ' + lastName).trim() || email.split('@')[0];
+      localStorage.setItem('st_session', JSON.stringify({
+        email: email,
+        name: name,
+        accountType: accountType,
+        registerTime: Date.now()
+      }));
+      localStorage.setItem('st_user', JSON.stringify({
+        email: email,
+        name: name,
+        accountType: accountType,
+        password: password,
+        phone: document.getElementById('regPhone').value
+      }));
+
+      showToast('Account created successfully! Redirecting to your dashboard...');
+      const redirect = accountType === 'agent' ? 'agent-dashboard.html' : 'buyer-dashboard.html';
+      setTimeout(() => { window.location.href = redirect; }, 2000);
+    });
+
+    document.getElementById('regPassword').addEventListener('input', function() {
+      const val = this.value;
+      const fill = document.getElementById('strengthFill');
+      const text = document.getElementById('strengthText');
+      let score = 0;
+      if (val.length >= 8) score++;
+      if (/[A-Z]/.test(val)) score++;
+      if (/[0-9]/.test(val)) score++;
+      if (/[^A-Za-z0-9]/.test(val)) score++;
+
+      const levels = [
+        { width: '0%', color: 'transparent', label: '' },
+        { width: '25%', color: '#ef4444', label: 'Weak' },
+        { width: '50%', color: '#f59e0b', label: 'Fair' },
+        { width: '75%', color: '#0ea5e9', label: 'Good' },
+        { width: '100%', color: '#00d4aa', label: 'Strong' }
+      ];
+      const level = levels[score];
+      fill.style.width = level.width;
+      fill.style.background = level.color;
+      text.textContent = level.label;
+      text.style.color = level.color;
+    });
+
+    document.getElementById('regConfirmPassword').addEventListener('input', function() {
+      const password = document.getElementById('regPassword').value;
+      const errorEl = document.getElementById('confirmError');
+      if (this.value && this.value !== password) {
+        errorEl.textContent = 'Passwords do not match';
+      } else {
+        errorEl.textContent = '';
+      }
+    });
+
+    function togglePassword(id, btn) {
+      const input = document.getElementById(id);
+      const isPassword = input.type === 'password';
+      input.type = isPassword ? 'text' : 'password';
+      btn.querySelector('.eye-open').style.display = isPassword ? 'none' : 'block';
+      btn.querySelector('.eye-closed').style.display = isPassword ? 'block' : 'none';
+    }
+
+    function socialLogin(provider) {
+      event.preventDefault();
+      const accountTypeInput = document.querySelector('input[name="accountType"]:checked');
+      const accountType = accountTypeInput ? accountTypeInput.value : 'buyer';
+      const name = provider.charAt(0).toUpperCase() + provider.slice(1) + ' User';
+      const email = provider + 'user@' + provider + '.com';
+      localStorage.setItem('st_session', JSON.stringify({ email: email, name: name, loginTime: Date.now(), accountType: accountType }));
+      showToast('Signed up with ' + provider.charAt(0).toUpperCase() + provider.slice(1) + '! Redirecting...');
+      const redirect = accountType === 'agent' ? 'agent-dashboard.html' : 'buyer-dashboard.html';
+      setTimeout(() => { window.location.href = redirect; }, 1200);
+    }
+
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.style.cssText = 'position:fixed;bottom:30px;right:30px;background:linear-gradient(135deg,#0f62fe,#00d4aa);color:#fff;padding:16px 28px;border-radius:10px;font-size:.95rem;font-weight:600;z-index:3000;box-shadow:0 8px 32px rgba(15,98,254,.4);animation:slideIn .3s ease;max-width:360px;';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(20px)';
+        toast.style.transition = 'all .3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
