@@ -289,9 +289,10 @@ img{max-width:100%;display:block}
 .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,.25)}
 
 /* ===== MAP ===== */
-.map-section{padding:0 0 90px}
-.map-embed{border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.08);background:var(--dark-2)}
-.map-embed iframe{display:block}@media(max-width:768px){.map-section{padding:0 0 60px}.map-embed iframe{height:300px}}
+.map-section{padding:90px 0;background:var(--dark-2)}
+.map-embed{border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.08);background:var(--dark)}
+.map-embed iframe{display:block;filter:invert(90%) hue-rotate(180deg) saturate(.7) brightness(.9) contrast(.9)}
+@media(max-width:768px){.map-section{padding:60px 0}.map-embed iframe{height:300px}}
 
 /* ===== CITY SPOTLIGHTS ===== */
 .city-spotlights{padding:0 0 90px}
