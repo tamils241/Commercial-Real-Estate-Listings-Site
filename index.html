@@ -8,6 +8,13 @@
 </head>
 <body>
 
+  <!-- ===== PAGE LOADER ===== -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-logo">ST</div>
+    <div class="loader-ring"></div>
+    <span class="loader-tag">Stackly Technogic</span>
+  </div>
+
   <!-- ===== NAVBAR ===== -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
@@ -22,6 +29,8 @@
         <li><a href="services.html">Services</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li class="nav-auth-mobile"><a href="login.html" class="nav-auth-login">Login</a></li>
+        <li class="nav-auth-mobile"><a href="register.html" class="nav-auth-register">Create Account</a></li>
       </ul>
       <div class="nav-actions">
         <a href="login.html" class="btn btn-ghost btn-nav">Login</a>
@@ -142,7 +151,7 @@
         <p>No properties match your search criteria. Try adjusting your filters.</p>
       </div>
       <div class="center-btn">
-        <button class="btn btn-primary" id="viewAllBtn">View All Properties</button>
+        <a href="listings.html" class="btn btn-primary" id="viewAllBtn">View All Properties</a>
       </div>
     </div>
   </section>

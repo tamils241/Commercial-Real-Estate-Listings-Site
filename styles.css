@@ -297,7 +297,8 @@ img{max-width:100%;display:block}
 /* ===== CITY SPOTLIGHTS ===== */
 .city-spotlights{padding:0 0 90px}
 .spotlight-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.spotlight-card{background:var(--dark-2);border:1px solid rgba(255,255,255,.05);border-radius:var(--radius);padding:28px;position:relative;transition:var(--transition)}
+.spotlight-card{background:var(--dark-2);border:1px solid rgba(255,255,255,.05);border-radius:var(--radius);padding:28px;position:relative;transition:var(--transition);display:flex;flex-direction:column}
+.spotlight-card .btn{margin-top:auto;align-self:flex-start}
 .spotlight-card:hover{border-color:rgba(15,98,254,.25);transform:translateY(-4px)}
 .spotlight-featured{border-color:rgba(15,98,254,.4)}
 .spotlight-featured:hover{border-color:rgba(0,212,170,.4)}
@@ -427,6 +428,10 @@ img{max-width:100%;display:block}
 .auth-back-home{position:absolute;top:24px;right:28px;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:var(--dark-2);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:var(--gray);font-size:.88rem;font-weight:600;text-decoration:none;transition:var(--transition);z-index:5}
 .auth-back-home:hover{border-color:var(--primary);color:var(--white);background:rgba(15,98,254,.08);transform:translateX(-3px)}
 .auth-form-container{width:100%;max-width:440px}
+.auth-logo{display:inline-flex;align-items:center;gap:12px;text-decoration:none;margin-bottom:28px}
+.auth-logo-img{height:42px;width:auto;display:block;filter:brightness(0) invert(1)}
+.auth-logo-brand{font-size:1.35rem;font-weight:800;letter-spacing:.5px;color:var(--white)}
+.auth-logo-brand span{color:var(--accent)}
 .auth-form-header{margin-bottom:28px}
 .auth-form-header h2{font-size:1.9rem;font-weight:800;margin-bottom:8px}
 .auth-form-header p{color:var(--gray);font-size:.95rem}
@@ -967,6 +972,37 @@ a.dash-logo:hover .dash-logo-img{opacity:.8}
 }
 
 /* ===== FINAL RESPONSIVE LAYER ===== */
+
+/* Page loader / preloader */
+.page-loader{position:fixed;inset:0;z-index:4000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:var(--dark);transition:opacity .45s ease,visibility .45s ease}
+.page-loader.hide{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{width:60px;height:60px;background:var(--gradient);border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;color:var(--white);transform:perspective(200px) rotateY(-8deg);box-shadow:4px 4px 0 var(--accent),8px 8px 0 rgba(0,212,170,.3);animation:loaderFloat 1.6s ease-in-out infinite}
+.loader-ring{width:52px;height:52px;border:3px solid rgba(255,255,255,.1);border-top-color:var(--accent);border-right-color:var(--primary);border-radius:50%;animation:loaderSpin .8s linear infinite}
+.loader-tag{font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--gray)}
+@keyframes loaderSpin{to{transform:rotate(360deg)}}
+@keyframes loaderFloat{0%,100%{transform:perspective(200px) rotateY(-8deg) translateY(0)}50%{transform:perspective(200px) rotateY(-8deg) translateY(-6px)}}
+
+/* Mobile auth links inside the nav drawer */
+.nav-auth-mobile{display:none}
+@media(max-width:768px){
+  .nav-auth-mobile{display:block;width:100%;margin-top:10px}
+  .nav-auth-mobile a{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:12px 18px;border-radius:8px;font-size:.92rem;font-weight:600}
+  .nav-auth-mobile a::after{content:none}
+  .nav-auth-mobile .nav-auth-login{background:var(--dark);border:1px solid rgba(255,255,255,.15);color:var(--white)}
+  .nav-auth-mobile .nav-auth-register{background:var(--gradient);color:var(--white)}
+}
+
+/* Auth pages on small screens */
+@media(max-width:768px){
+  .auth-form .form-row{flex-wrap:wrap}
+  .auth-form .form-row .form-group{flex:1 1 100%}
+}
+@media(max-width:480px){
+  .auth-form-wrapper{padding:80px 16px 40px}
+  .auth-form-header h2{font-size:1.6rem}
+  .auth-3d-title{font-size:2rem}
+}
+
 .dash-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .dash-table{min-width:560px}
 .dash-main,.dash-grid,.dash-head,.dash-panel,.dash-actions,.ds-detail,.property-body{min-width:0}

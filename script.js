@@ -1,3 +1,16 @@
+// ===== PAGE LOADER =====
+(function hidePageLoader() {
+  const loader = document.getElementById('pageLoader');
+  if (!loader) return;
+  const done = () => loader.classList.add('hide');
+  if (document.readyState === 'complete') {
+    setTimeout(done, 400);
+  } else {
+    window.addEventListener('load', done);
+  }
+  setTimeout(done, 4000);
+})();
+
 // ===== PROPERTY DATA (India) =====
 const properties = [
   { id:1, title:"The Grand Business Tower", city:"Chennai", locality:"Tamil Nadu", type:"office", purpose:"sale", price:1250, priceLabel:"₹12.5 Cr", sqft:25000, baths:8, parking:60, badge:"Premium", emoji:"🏢", image:"images/The Grand Business Tower.webp", description:"Landmark commercial tower in Chennai with panoramic bay views, modern infrastructure, and proximity to major transit hubs.", features:["Smart Building","24/7 Security","Conference Center","Rooftop Terrace"] },
@@ -133,7 +146,7 @@ function renderCategories() {
       <div class="category-img"><img src="${c.image}" alt="${c.name}" loading="lazy"></div>
       <h3>${c.name}</h3>
       <p>${c.desc}</p>
-      <span class="category-link">Explore →</span>
+      <a href="404.html" class="category-link" onclick="event.stopPropagation();">Explore →</a>
     </div>`).join('');
   grid.querySelectorAll('.category-card').forEach(card => {
     card.addEventListener('click', () => {
@@ -427,19 +440,27 @@ if (contactForm) {
 }
 
 // ===== NEWSLETTER =====
-const newsletterBtn = document.getElementById('newsletterBtn');
-if (newsletterBtn) {
-  newsletterBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    const input = document.getElementById('newsletterEmail');
-    if (input.value && input.value.includes('@')) {
+const isValidEmail = (email) => /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email);
+function bindNewsletter() {
+  const newsletterBtn = document.getElementById('newsletterBtn');
+  const input = document.getElementById('newsletterEmail');
+  if (!newsletterBtn || !input) return;
+  newsletterBtn.type = 'button';
+  newsletterBtn.addEventListener('click', () => {
+    const email = input.value.trim();
+    if (isValidEmail(email)) {
       showToast('Subscribed successfully! Welcome aboard.');
       input.value = '';
     } else {
-      showToast('Please enter a valid email address.');
+      showToast(email ? 'Invalid email! Use a valid ID like sun@gmail.com.' : 'Please enter your email address.');
+      input.focus();
     }
   });
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); newsletterBtn.click(); } });
+  input.setAttribute('autocomplete', 'email');
 }
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindNewsletter);
+else bindNewsletter();
 
 // ===== INSIGHTS BUTTON =====
 const insightsBtn = document.getElementById('insightsBtn');
@@ -480,7 +501,7 @@ function initSession() {
   const listBtn = document.querySelector('.btn-list');
   if (listBtn) {
     listBtn.textContent = 'List Property';
-    listBtn.href = '#contact';
+    listBtn.href = session.accountType === 'agent' ? 'agent-dashboard.html' : 'listings.html';
   }
 }
 

@@ -8,6 +8,14 @@
 </head>
 <body class="auth-body">
 
+  <!-- ===== PAGE LOADER ===== -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-logo">ST</div>
+    <div class="loader-ring"></div>
+    <span class="loader-tag">Stackly Technogic</span>
+  </div>
+  <script>setTimeout(function(){var l=document.getElementById('pageLoader');if(l)l.classList.add('hide');},600);</script>
+
   <!-- Auth Container -->
   <div class="auth-container">
     <!-- Left: 3D Branding -->
@@ -58,6 +66,10 @@
     <div class="auth-form-wrapper">
       <a href="index.html" class="auth-back-home" aria-label="Back to Home"> Back to Home</a>
       <div class="auth-form-container">
+        <a href="index.html" class="auth-logo" aria-label="Stackly Technogic Home">
+          <img src="images/logo.webp" alt="Stackly Technogic" class="auth-logo-img">
+          
+        </a>
         <div class="auth-form-header">
           <h2>Create Account</h2>
           <p>Get started with your free account today</p>
