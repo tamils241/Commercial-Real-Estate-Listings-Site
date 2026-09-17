@@ -11,9 +11,16 @@
   <!-- Dashboard -->
   <section class="dash-shell">
     <div class="container">
+      <div class="dash-mobile-head">
+        <a href="index.html" class="dash-logo">
+          <img src="images/logo.webp" alt="Stackly Technogic" class="dash-logo-img">
+        </a>
+        <button class="dash-menu-btn" id="dashMenuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
       <div class="dash-grid">
         <!-- Sidebar -->
         <aside class="dash-side">
+          <button class="dash-close" id="dashCloseBtn" aria-label="Close menu">✕</button>
           <a href="index.html" class="dash-logo">
             <img src="images/logo.webp" alt="Stackly Technogic" class="dash-logo-img">
           </a>
@@ -362,6 +369,19 @@
     document.getElementById('dashNavInquiries').addEventListener('click', () => { showPanel('inquiries'); renderInquiries(); });
     document.getElementById('dashNavAgents').addEventListener('click', () => { showPanel('agents'); renderAgents(); });
     document.getElementById('dashNavBrowse').addEventListener('click', () => { showPanel('browse'); renderBrowse(); });
+
+    const dashMenuBtn = document.getElementById('dashMenuBtn');
+    const dashSide = document.querySelector('.dash-side');
+    const dashCloseBtn = document.getElementById('dashCloseBtn');
+    if (dashMenuBtn) {
+      dashMenuBtn.addEventListener('click', () => dashSide.classList.toggle('open'));
+      if (dashCloseBtn) dashCloseBtn.addEventListener('click', () => dashSide.classList.remove('open'));
+      document.querySelectorAll('.dash-nav a, .dash-logout a').forEach(a => a.addEventListener('click', () => dashSide.classList.remove('open')));
+      document.addEventListener('click', (e) => {
+        if (dashSide.classList.contains('open') && !dashSide.contains(e.target) && !dashMenuBtn.contains(e.target)) dashSide.classList.remove('open');
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') dashSide.classList.remove('open'); });
+    }
 
     const availableCities = ['Chennai','Bengaluru','Hyderabad','Mumbai','Pune','Delhi','Coimbatore','Kochi'];
 

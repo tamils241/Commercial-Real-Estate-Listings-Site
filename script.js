@@ -82,7 +82,7 @@ const notifDropdown = document.getElementById('notifDropdown');
 
 // ===== NAVBAR =====
 window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.pageYOffset > 50);
+  if (navbar) navbar.classList.toggle('scrolled', window.pageYOffset > 50);
   if (notifDropdown) notifDropdown.classList.remove('open');
 });
 
@@ -127,6 +127,7 @@ if (notifBtn && notifDropdown) {
 // ===== RENDER CATEGORIES =====
 function renderCategories() {
   const grid = document.getElementById('categoriesGrid');
+  if (!grid) return;
   grid.innerHTML = categories.map((c, i) => `
     <div class="category-card fade-in" data-type="${c.type}" style="animation-delay:${i * 0.08}s">
       <div class="category-img"><img src="${c.image}" alt="${c.name}" loading="lazy"></div>
@@ -153,7 +154,9 @@ function renderCategories() {
 
 // ===== RENDER WHY =====
 function renderWhy() {
-  document.getElementById('whyGrid').innerHTML = whyFeatures.map((f, i) => `
+  const grid = document.getElementById('whyGrid');
+  if (!grid) return;
+  grid.innerHTML = whyFeatures.map((f, i) => `
     <div class="why-card fade-in" style="animation-delay:${i * 0.1}s">
       <div class="why-icon">${f.icon}</div>
       <h3>${f.title}</h3>
@@ -163,7 +166,9 @@ function renderWhy() {
 
 // ===== RENDER LOCATIONS =====
 function renderLocations() {
-  document.getElementById('locationsGrid').innerHTML = locations.map((city, i) => {
+  const grid = document.getElementById('locationsGrid');
+  if (!grid) return;
+  grid.innerHTML = locations.map((city, i) => {
     const count = properties.filter(p => p.city === city).length;
     const image = properties.find(p => p.city === city);
     return `
@@ -186,7 +191,9 @@ function renderLocations() {
 
 // ===== RENDER STEPS =====
 function renderSteps() {
-  document.getElementById('howGrid').innerHTML = steps.map((s, i) => `
+  const grid = document.getElementById('howGrid');
+  if (!grid) return;
+  grid.innerHTML = steps.map((s, i) => `
     <div class="how-card fade-in" style="animation-delay:${i * 0.1}s">
       <span class="how-num">${s.num}</span>
       <span class="how-connector"></span>
@@ -197,7 +204,9 @@ function renderSteps() {
 
 // ===== RENDER TESTIMONIALS =====
 function renderTestimonials() {
-  document.getElementById('testimonialTrack').innerHTML = testimonials.map(t => `
+  const track = document.getElementById('testimonialTrack');
+  if (!track) return;
+  track.innerHTML = testimonials.map(t => `
     <div class="testimonial-card">
       <div class="testimonial-stars">★★★★★</div>
       <p>"${t.text}"</p>
@@ -210,7 +219,9 @@ function renderTestimonials() {
 
 // ===== RENDER INSIGHTS =====
 function renderInsights() {
-  document.getElementById('insightsGrid').innerHTML = insights.map((b, i) => `
+  const grid = document.getElementById('insightsGrid');
+  if (!grid) return;
+  grid.innerHTML = insights.map((b, i) => `
     <div class="insight-card fade-in" style="animation-delay:${i * 0.1}s">
       <div class="insight-img"><img src="${b.image}" alt="${b.title}" loading="lazy"><span class="insight-tag">${b.tag}</span></div>
       <div class="insight-body">
@@ -223,6 +234,7 @@ function renderInsights() {
 
 // ===== RENDER PROPERTY CARDS =====
 function renderProperties(filtered) {
+  if (!listingsGrid || !noResults) return;
   listingsGrid.innerHTML = '';
   if (!filtered.length) { noResults.style.display = 'block'; return; }
   noResults.style.display = 'none';
@@ -365,11 +377,13 @@ function animateCounters() {
 }
 
 // ===== FADE-IN OBSERVER =====
-const fadeObserver = new IntersectionObserver((entries) => {
+const supportsIO = 'IntersectionObserver' in window;
+const fadeObserver = supportsIO ? new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-}, { threshold: 0.12 });
+}, { threshold: 0.12 }) : null;
 
 function setupFadeIn() {
+  if (!fadeObserver) return;
   document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 }
 
