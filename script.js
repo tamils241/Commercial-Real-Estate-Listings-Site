@@ -431,6 +431,16 @@ if (newsletterBtn) {
 const insightsBtn = document.getElementById('insightsBtn');
 if (insightsBtn) insightsBtn.addEventListener('click', () => showToast('Browse more insights coming soon.'));
 
+// ===== FOOTER NEWSLETTER =====
+function subscribeFooter() {
+  const input = document.getElementById('footerNLInput');
+  if (!input) return;
+  const email = (input.value || '').trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('Please enter a valid email address.'); return; }
+  input.value = '';
+  showToast('Subscribed! You will hear from us soon.');
+}
+
 // ===== TOAST =====
 function showToast(message) {
   const toast = document.createElement('div');

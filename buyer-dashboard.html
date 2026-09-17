@@ -26,8 +26,8 @@
             <a href="#" id="dashNavOverview" class="active"><span class="dn-icon">📊</span> Overview</a>
             <a href="#" id="dashNavSaved"><span class="dn-icon">⭐</span> Saved Properties</a>
             <a href="#" id="dashNavInquiries"><span class="dn-icon">✉️</span> My Inquiries</a>
-            <a href="agents.html" id="dashNavAgents"><span class="dn-icon">🤝</span> Find an Agent</a>
-            <a href="listings.html" id="dashNavBrowse"><span class="dn-icon">🏢</span> Browse Listings</a>
+            <a href="#" id="dashNavAgents"><span class="dn-icon">🤝</span> Find an Agent</a>
+            <a href="#" id="dashNavBrowse"><span class="dn-icon">🏢</span> Browse Listings</a>
           </nav>
           <div class="dash-logout">
             <a href="#" class="btn-link" style="color:#f87171" onclick="logout(); return false;"><span class="dn-icon">🚪</span> Logout</a>
@@ -36,16 +36,6 @@
 
         <!-- Main -->
         <div class="dash-main" id="dashMain">
-          <div class="auth-gate" id="authGate" style="display:none;">
-            <div class="auth-gate-card">
-              <h2>Please Sign In</h2>
-              <p>You need to log in or create a buyer account to access your dashboard.</p>
-              <a href="login.html" class="btn btn-primary">Go to Login</a>
-              &nbsp;
-              <a href="register.html" class="btn btn-outline">Create Account</a>
-            </div>
-          </div>
-
           <div id="dashContent" style="display:none;">
             <!-- Overview -->
             <div id="panelOverview">
@@ -65,7 +55,7 @@
               <div class="dash-panel">
                 <div class="dash-panel-head">
                   <h3>Recent Activity</h3>
-                  <a href="#savedPanel" onclick="showPanel('saved'); return false;">View All</a>
+                  <a href="404.html" onclick="showPanel('saved'); return false;">View All</a>
                 </div>
                 <div class="dash-list" id="recentActivity"></div>
               </div>
@@ -73,7 +63,7 @@
               <div class="dash-panel">
                 <div class="dash-panel-head">
                   <h3>Recommended For You</h3>
-                  <a href="listings.html">Browse All →</a>
+                  <a href="404.html" onclick="showPanel('recommended'); return false;">Browse All →</a>
                 </div>
                 <div class="dash-list" id="recommended"></div>
               </div>
@@ -86,9 +76,27 @@
                   <h2>Saved Properties</h2>
                   <p>Your shortlisted commercial spaces.</p>
                 </div>
+                <a href="404.html" class="btn btn-primary">+ Browse Listings</a>
               </div>
+
+              <div class="dash-stats">
+                <div class="dash-stat"><div class="ds-icon">⭐</div><strong id="savCount">0</strong><span>Saved Properties</span></div>
+                <div class="dash-stat"><div class="ds-icon">🏙️</div><strong id="savCities">0</strong><span>Locations</span></div>
+                <div class="dash-stat"><div class="ds-icon">🏢</div><strong id="savTypes">0</strong><span>Property Types</span></div>
+                <div class="dash-stat"><div class="ds-icon">💰</div><strong id="savSale">0</strong><span>For Sale</span></div>
+              </div>
+
               <div class="dash-panel">
+                <div class="dash-panel-head">
+                  <h3>Your Saved List</h3>
+                  <a href="404.html" onclick="clearSaved(); return false;">Clear All →</a>
+                </div>
                 <div class="dash-list" id="savedList"></div>
+              </div>
+
+              <div class="dash-metric-row">
+                <div class="dash-metric"><strong>🔔 Price Drop Alerts</strong><span>We'll email you the moment a saved property drops in price or changes availability.</span></div>
+                <div class="dash-metric"><strong>💡 Pro Tip</strong><span>Comparing 3–5 saved properties helps you shortlist faster. Request a site visit for your top picks.</span></div>
               </div>
             </div>
 
@@ -99,8 +107,21 @@
                   <h2>My Inquiries</h2>
                   <p>Track your property inquiries and agent responses.</p>
                 </div>
+                <a href="404.html" class="btn btn-primary">+ New Inquiry</a>
               </div>
+
+              <div class="dash-stats">
+                <div class="dash-stat"><div class="ds-icon">✉️</div><strong id="inqTotal">0</strong><span>Total Inquiries</span></div>
+                <div class="dash-stat"><div class="ds-icon">📥</div><strong id="inqPending">0</strong><span>Awaiting Response</span></div>
+                <div class="dash-stat"><div class="ds-icon">✅</div><strong id="inqAnswered">0</strong><span>Answered</span></div>
+                <div class="dash-stat"><div class="ds-icon">🧭</div><strong id="inqResponseTime">—</strong><span>Avg. Response Time</span></div>
+              </div>
+
               <div class="dash-panel">
+                <div class="dash-panel-head">
+                  <h3>Inquiry History</h3>
+                  <a href="404.html">Download Report →</a>
+                </div>
                 <div class="dash-table-wrap">
                   <table class="dash-table">
                     <thead>
@@ -110,17 +131,211 @@
                   </table>
                 </div>
               </div>
+
+              <div class="dash-metric-row">
+                <div class="dash-metric"><strong>🕐 Typical Response Time</strong><span>Our agents usually respond within 24–48 hours on business days. You'll be notified by email and SMS.</span></div>
+                <div class="dash-metric"><strong>💡 Pro Tip</strong><span>Include your preferred budget and start date when inquiring — agents prioritise detailed requests and reply faster.</span></div>
+              </div>
+            </div>
+
+            <!-- Find an Agent -->
+            <div id="panelAgents" style="display:none;">
+              <div class="dash-head">
+                <div>
+                  <h2>Find an Agent</h2>
+                  <p>Connect with skilled commercial real-estate professionals in your market.</p>
+                </div>
+                <a href="404.html" class="btn btn-primary" onclick="showToast('Becoming an agent is coming soon.'); return false;">Become an Agent</a>
+              </div>
+
+              <div class="dash-stats">
+                <div class="dash-stat"><div class="ds-icon">🤝</div><strong>120+</strong><span>Expert Agents</span></div>
+                <div class="dash-stat"><div class="ds-icon">🏙️</div><strong>8</strong><span>Cities Covered</span></div>
+                <div class="dash-stat"><div class="ds-icon">⭐</div><strong>4.9</strong><span>Avg. Rating</span></div>
+                <div class="dash-stat"><div class="ds-icon">💼</div><strong>500+</strong><span>Verified Clients</span></div>
+              </div>
+
+              <div class="dash-panel">
+                <div class="dash-panel-head">
+                  <h3>Top Rated Agents</h3>
+                  <span style="color:var(--gray);font-size:.8rem;">Specialists across office, retail &amp; warehousing</span>
+                </div>
+                <div class="agent-filter" id="dashAgentFilter"></div>
+                <div class="agents-grid" id="dashAgentGrid"></div>
+              </div>
+
+              <div class="dash-metric-row">
+                <div class="dash-metric"><strong>💡 Shortlist an Agent</strong><span>Pick an agent who specialises in your property type and city — they'll give you the fastest, most relevant listings.</span></div>
+                <div class="dash-metric"><strong>🛡️ Vetted Professionals</strong><span>Every agent on Stackly is verified against RERA guidelines and has a track record of closed deals.</span></div>
+              </div>
+            </div>
+
+            <!-- Browse Listings -->
+            <div id="panelBrowse" style="display:none;">
+              <div class="dash-head">
+                <div>
+                  <h2>Browse Listings</h2>
+                  <p>Search and explore all commercial properties on the market.</p>
+                </div>
+                <a href="listings.html" class="btn btn-primary">View Full Listings →</a>
+              </div>
+
+              <div class="dash-stats">
+                <div class="dash-stat"><div class="ds-icon">🏢</div><strong id="brwCount">0</strong><span>Listings</span></div>
+                <div class="dash-stat"><div class="ds-icon">🏙️</div><strong id="brwCities">0</strong><span>Cities</span></div>
+                <div class="dash-stat"><div class="ds-icon">🗂️</div><strong id="brwTypes">0</strong><span>Property Types</span></div>
+                <div class="dash-stat"><div class="ds-icon">💰</div><strong id="brwSale">0</strong><span>For Sale</span></div>
+              </div>
+
+              <div class="dash-panel">
+                <div class="dash-panel-head">
+                  <h3>Search Properties</h3>
+                  <span style="color:var(--gray);font-size:.8rem;">Office · Retail · Warehouse · Industrial</span>
+                </div>
+                <div class="search-bar">
+                  <div class="filter-group">
+                    <label>Location</label>
+                    <select id="brwLocation">
+                      <option value="all">All Cities</option>
+                      <option>Chennai</option>
+                      <option>Bengaluru</option>
+                      <option>Hyderabad</option>
+                      <option>Mumbai</option>
+                      <option>Pune</option>
+                      <option>Delhi</option>
+                      <option>Coimbatore</option>
+                      <option>Kochi</option>
+                    </select>
+                  </div>
+                  <div class="filter-group">
+                    <label>Property Type</label>
+                    <select id="brwType">
+                      <option value="all">All Types</option>
+                      <option value="office">Office</option>
+                      <option value="retail">Retail</option>
+                      <option value="warehouse">Warehouse</option>
+                      <option value="industrial">Industrial</option>
+                      <option value="business-park">Business Park</option>
+                      <option value="land">Land</option>
+                    </select>
+                  </div>
+                  <div class="filter-group">
+                    <label>Purpose</label>
+                    <select id="brwPurpose">
+                      <option value="all">Buy / Rent / Lease</option>
+                      <option value="sale">For Sale</option>
+                      <option value="lease">For Lease</option>
+                      <option value="rent">For Rent</option>
+                    </select>
+                  </div>
+                  <button class="btn btn-primary btn-search" onclick="renderBrowse(); return false;">🔍 Search</button>
+                </div>
+              </div>
+
+              <div class="dash-panel">
+                <div class="listings-grid" id="brwGrid"></div>
+                <div class="no-results" id="brwNone" style="display:none;">
+                  <p>No properties match your filters. Try adjusting your search.</p>
+                </div>
+              </div>
+
+              <div class="dash-metric-row">
+                <div class="dash-metric"><strong>📈 Fresh Inventory</strong><span>New listings are added every week across 8 business hubs in India. Saved favourites live in your Saved Properties tab.</span></div>
+                <div class="dash-metric"><strong>💡 Compare Before You Commit</strong><span>Shortlist 3–5 spaces and request site visits — a focused search closes deals faster.</span></div>
+              </div>
             </div>
           </div>
 
           <div class="dash-actions" style="margin-top:12px;">
-            <a href="listings.html" class="btn btn-primary">Explore Properties</a>
-            <a href="agents.html" class="btn btn-outline">Talk to an Agent</a>
+            <a href="404.html" class="btn btn-primary">Explore Properties</a>
+            <a href="404.html" class="btn btn-outline">Talk to an Agent</a>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <section class="newsletter-section" id="newsletter">
+    <div class="container">
+      <div class="newsletter-card">
+        <h2>Stay Ahead of the Property Market</h2>
+        <p>Get new property listings, market insights, and commercial real-estate updates directly in your inbox.</p>
+        <div class="newsletter-form">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email address">
+          <button class="btn btn-primary" id="newsletterBtn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid more">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <a href="index.html"><img src="images/logo.webp" alt="Stackly Technogic" class="footer-logo-img"></a>
+          </div>
+          <p>Smart commercial real estate solutions for businesses, investors, and property owners.</p>
+          <div class="footer-social">
+            <a href="404.html" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="404.html" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.77 7.74L23.2 22h-6.23l-4.88-6.38L6.5 22H3.35l7.24-8.28L1 2h6.39l4.41 5.83L18.9 2Zm-1.08 18.13h1.72L6.9 3.78H5.06l12.76 16.35Z"/></svg></a>
+            <a href="404.html" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07ZM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.88 5.88 0 0 0-2.13 1.38A5.88 5.88 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.8.72 1.47 1.38 2.13a5.88 5.88 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 0 0 2.13-1.38 5.88 5.88 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.88 5.88 0 0 0-1.38-2.13A5.88 5.88 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0Zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84Zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4Zm6.41-11.85a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44Z"/></svg></a>
+            <a href="404.html" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67h-3.56V9h3.42v1.56h.05a3.75 3.75 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="listings.html">Properties</a></li>
+            <li><a href="locations.html">Locations</a></li>
+            <li><a href="agents.html">Agents</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Property Types</h4>
+          <ul>
+            <li><a href="listings.html">Office</a></li>
+            <li><a href="listings.html">Retail</a></li>
+            <li><a href="listings.html">Warehouse</a></li>
+            <li><a href="listings.html">Industrial</a></li>
+            <li><a href="listings.html">Business Park</a></li>
+            <li><a href="listings.html">Land</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:info@stacklytechnogic.com">info@stacklytechnogic.com</a></li>
+            <li><a href="tel:+919840012345">+91 98400 12345</a></li>
+            <li class="wide-line">No. 12, Business Avenue, Anna Salai, Chennai</li>
+          </ul>
+          <h4 style="margin-top:22px;">Working Hours</h4>
+          <ul class="footer-hours">
+            <li>Mon–Sat · 9:00 AM – 7:00 PM</li>
+            <li>Sunday · Closed</li>
+          </ul>
+        </div>
+        <div class="footer-links footer-news">
+          <h4>Newsletter</h4>
+          <p>Market insights and new listings, straight to your inbox.</p>
+          <div class="footer-news-form">
+            <input type="email" id="footerNLInput" placeholder="Your email address">
+            <button class="btn btn-primary" onclick="subscribeFooter(); return false;">Join</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Stackly. All Rights Reserved.</p>
+        <div class="footer-legal">
+          <a href="404.html">Privacy Policy</a><span>|</span><a href="404.html">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
   <script>
@@ -136,7 +351,7 @@
     }
 
     function showPanel(id) {
-      ['overview','saved','inquiries'].forEach(p => document.getElementById('panel' + p.charAt(0).toUpperCase() + p.slice(1)).style.display = 'none');
+      ['overview','saved','inquiries','agents','browse'].forEach(p => document.getElementById('panel' + p.charAt(0).toUpperCase() + p.slice(1)).style.display = 'none');
       document.getElementById('panel' + id.charAt(0).toUpperCase() + id.slice(1)).style.display = 'block';
       document.querySelectorAll('.dash-nav a').forEach(a => a.classList.remove('active'));
       document.getElementById('dashNav' + id.charAt(0).toUpperCase() + id.slice(1)).classList.add('active');
@@ -145,6 +360,95 @@
     document.getElementById('dashNavOverview').addEventListener('click', () => showPanel('overview'));
     document.getElementById('dashNavSaved').addEventListener('click', () => { showPanel('saved'); renderSaved(); });
     document.getElementById('dashNavInquiries').addEventListener('click', () => { showPanel('inquiries'); renderInquiries(); });
+    document.getElementById('dashNavAgents').addEventListener('click', () => { showPanel('agents'); renderAgents(); });
+    document.getElementById('dashNavBrowse').addEventListener('click', () => { showPanel('browse'); renderBrowse(); });
+
+    const availableCities = ['Chennai','Bengaluru','Hyderabad','Mumbai','Pune','Delhi','Coimbatore','Kochi'];
+
+    const team = [
+      { n:"Arun Kumar", r:"Senior Consultant · Chennai", s:"office", d:"Office & corporate park specialist with 12+ years in commercial leasing.", img:"images/team/1.webp" },
+      { n:"Priya Suresh", r:"Retail Specialist · Bengaluru", s:"retail", d:"High-street & mall retail consultant helping brands find prime footfall.", img:"images/team/2.webp" },
+      { n:"Rahul Mehta", r:"Logistics & Warehouse · Mumbai", s:"warehouse", d:"Warehouse and industrial logistics expert for supply-chain operations.", img:"images/team/3.webp" },
+      { n:"Deepa Nair", r:"Industrial Consultant · Coimbatore", s:"industrial", d:"Factory & industrial estate advisor for manufacturing businesses.", img:"images/team/4.webp" },
+      { n:"Karan Kapoor", r:"Corporate Leasing · Delhi NCR", s:"office", d:"Corporate workspace leasing for startups, enterprises, and co-working.", img:"images/team/5.webp" },
+      { n:"Anita Menon", r:"Retail & Leisure · Kochi", s:"retail", d:"Retail promenade and tourism-driven commercial property expert.", img:"images/team/6.webp" },
+      { n:"Vikram Reddy", r:"Warehouse Solutions · Hyderabad", s:"warehouse", d:"Pharma-corridor warehouse and automation-ready facility specialist.", img:"images/team/7.webp" },
+      { n:"Sneha Iyer", r:"Property Investment · Chennai", s:"office", d:"Commercial investment advisor for institutional and individual investors.", img:"images/team/8.webp" }
+    ];
+
+    const teamSpecs = [
+      { s:"all", l:"All" }, { s:"office", l:"Office" }, { s:"retail", l:"Retail" },
+      { s:"warehouse", l:"Warehouse" }, { s:"industrial", l:"Industrial" }
+    ];
+
+    function renderAgents() {
+      const filter = document.getElementById('dashAgentFilter');
+      const grid = document.getElementById('dashAgentGrid');
+      filter.innerHTML = teamSpecs.map(t => `<button class="${t.s === 'all' ? 'active' : ''}" data-spec="${t.s}">${t.l}</button>`).join('');
+      grid.innerHTML = team.map(a => `
+        <div class="agent-card" data-spec="${a.s}">
+          <div class="agent-photo"><img src="${a.img}" alt="${a.n}"></div>
+          <div class="agent-body">
+            <h3>${a.n}</h3>
+            <div class="agent-role">${a.r}</div>
+            <p class="agent-spec">${a.d}</p>
+            <div class="agent-contact">
+              <a href="404.html" aria-label="Email">✉️</a>
+              <a href="404.html" aria-label="Phone">📞</a>
+              <a href="404.html" aria-label="Chat">💬</a>
+            </div>
+          </div>
+        </div>`).join('');
+      filter.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          filter.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const spec = btn.dataset.spec;
+          grid.querySelectorAll('.agent-card').forEach(card => {
+            card.style.display = (spec === 'all' || card.dataset.spec === spec) ? '' : 'none';
+          });
+        });
+      });
+    }
+
+    function renderBrowse() {
+      const loc = document.getElementById('brwLocation').value;
+      const type = document.getElementById('brwType').value;
+      const purpose = document.getElementById('brwPurpose').value;
+      const all = typeof properties !== 'undefined' ? properties : [];
+      const grid = document.getElementById('brwGrid');
+      const none = document.getElementById('brwNone');
+      document.getElementById('brwCount').textContent = all.length;
+      document.getElementById('brwCities').textContent = new Set(all.map(p => p.city)).size;
+      document.getElementById('brwTypes').textContent = new Set(all.map(p => p.type)).size;
+      document.getElementById('brwSale').textContent = all.filter(p => p.purpose === 'sale').length;
+      const list = all.filter(p =>
+        (loc === 'all' || p.city === loc) &&
+        (type === 'all' || p.type === type) &&
+        (purpose === 'all' || p.purpose === purpose));
+      none.style.display = list.length ? 'none' : 'block';
+      grid.innerHTML = list.map(p => `
+        <div class="property-card" onclick="location.href='listings.html'">
+          <div class="property-image">
+            <img class="property-img" src="${p.image}" alt="${p.title}" loading="lazy">
+            <span class="property-tag">${typeL[p.type] || p.type}</span>
+            <span class="property-purpose ${p.purpose}">${purposeL[p.purpose]}</span>
+          </div>
+          <div class="property-body">
+            <h3 class="property-title">${p.title}</h3>
+            <p class="property-location">📍 ${p.city}, ${p.locality}</p>
+            <div class="property-features">
+              <span class="property-feature">◫ ${p.sqft.toLocaleString()} Sq Ft</span>
+              <span class="property-feature">🚻 ${p.baths} Baths</span>
+              <span class="property-feature">🅿️ ${p.parking} Parking</span>
+            </div>
+            <div class="property-bottom">
+              <div class="property-price">${p.priceLabel}</div>
+              <span class="property-view">View →</span>
+            </div>
+          </div>
+        </div>`).join('');
+    }
 
     function renderActivity() {
       const saved = getSaved();
@@ -157,7 +461,7 @@
 
     function renderRecommended() {
       const list = document.getElementById('recommended');
-      const recs = window.properties ? properties.slice(0, 3) : [];
+      const recs = (typeof properties !== 'undefined') ? properties.slice(0, 3) : [];
       if (!recs.length) { list.innerHTML = `<p class="dash-plain">Explore our listings to see recommendations.</p>`; return; }
       list.innerHTML = recs.map(p => `
         <div class="dash-item">
@@ -172,6 +476,10 @@
       const saved = getSaved();
       const list = document.getElementById('savedList');
       document.getElementById('statSaved').textContent = saved.length;
+      document.getElementById('savCount').textContent = saved.length;
+      document.getElementById('savCities').textContent = new Set(saved.map(p => p.city)).size;
+      document.getElementById('savTypes').textContent = new Set(saved.map(p => p.type)).size;
+      document.getElementById('savSale').textContent = saved.filter(p => !/\/\s*month/i.test(p.priceLabel || '')).length;
       if (!saved.length) {
         list.innerHTML = `<p class="dash-plain">You haven't saved any properties yet. <a href="listings.html" style="color:var(--primary);font-weight:700;">Browse listings →</a></p>`;
         return;
@@ -185,6 +493,23 @@
         </div>`).join('');
     }
 
+    function clearSaved() {
+      if (!getSaved().length) return;
+      if (!confirm('Remove all saved properties?')) return;
+      localStorage.setItem('st_saved', '[]');
+      renderSaved();
+      renderActivity();
+      showToast('All saved properties removed.');
+    }
+
+    function subscribeFooter() {
+      const input = document.getElementById('footerNLInput');
+      const email = (input.value || '').trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('Please enter a valid email address.'); return; }
+      input.value = '';
+      showToast('Subscribed! You will hear from us soon.');
+    }
+
     function removeSaved(id) {
       const saved = getSaved().filter(p => p.id !== id);
       localStorage.setItem('st_saved', JSON.stringify(saved));
@@ -196,31 +521,34 @@
     function renderInquiries() {
       const inquiries = getInquiries();
       const tbody = document.getElementById('inquiriesTable');
+      const answered = inquiries.filter(q => /responded|answered|approved/i.test(q.status || '')).length;
       document.getElementById('statInquiries').textContent = inquiries.length;
+      document.getElementById('inqTotal').textContent = inquiries.length;
+      document.getElementById('inqPending').textContent = inquiries.length - answered;
+      document.getElementById('inqAnswered').textContent = answered;
+      document.getElementById('inqResponseTime').textContent = inquiries.length ? '24–48h' : '—';
       if (!inquiries.length) {
         tbody.innerHTML = `<tr><td colspan="4" style="color:var(--gray);text-align:center;padding:20px;">No inquiries yet. Contact an agent from any listing.</td></tr>`;
         return;
       }
-      tbody.innerHTML = inquiries.reverse().map(q => `
+      const badgeClass = s => /responded|answered|approved/i.test(s || '') ? 'db-active' : 'db-pending';
+      tbody.innerHTML = inquiries.slice().reverse().map(q => `
         <tr>
           <td><strong>${q.property}</strong><br><span style="color:var(--gray);font-size:.8rem;">${q.location}</span></td>
           <td>${typeL[q.type] || q.type}</td>
           <td>${new Date(q.date).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' })}</td>
-          <td><span class="dash-badge db-pending">${q.status || 'In Review'}</span></td>
+          <td><span class="dash-badge ${badgeClass(q.status)}">${q.status || 'In Review'}</span></td>
         </tr>`).join('');
     }
 
     (function init() {
       const session = getSession();
-      const gate = document.getElementById('authGate');
       const content = document.getElementById('dashContent');
       if (!session) {
-        gate.style.display = 'flex';
         content.style.display = 'none';
         document.querySelector('.dash-nav').style.display = 'none';
         return;
       }
-      gate.style.display = 'none';
       content.style.display = 'block';
       const name = session.name || 'Buyer User';
       const email = session.email || 'buyer@stacklytechnogic.com';

@@ -27,7 +27,7 @@
             <a href="#" id="dashNavListings"><span class="dn-icon">🏢</span> My Listings</a>
             <a href="#" id="dashNavInquiries"><span class="dn-icon">✉️</span> Inquiries</a>
             <a href="#" id="dashNavAdd"><span class="dn-icon">➕</span> Add Listing</a>
-            <a href="agents.html"><span class="dn-icon">🤝</span> My Profile</a>
+            <a href="#" id="dashNavProfile"><span class="dn-icon">🤝</span> My Profile</a>
           </nav>
           <div class="dash-logout">
             <a href="#" class="btn-link" style="color:#f87171" onclick="logout(); return false;"><span class="dn-icon">🚪</span> Logout</a>
@@ -36,16 +36,6 @@
 
         <!-- Main -->
         <div class="dash-main" id="dashMain">
-          <div class="auth-gate" id="authGate" style="display:none;">
-            <div class="auth-gate-card">
-              <h2>Please Sign In</h2>
-              <p>You need to log in with an agent/broker account to access this dashboard.</p>
-              <a href="login.html" class="btn btn-primary">Go to Login</a>
-              &nbsp;
-              <a href="register.html" class="btn btn-outline">Create Account</a>
-            </div>
-          </div>
-
           <div id="dashContent" style="display:none;">
             <!-- Overview -->
             <div id="panelOverview">
@@ -65,7 +55,7 @@
               <div class="dash-panel">
                 <div class="dash-panel-head">
                   <h3>Latest Inquiries</h3>
-                  <a href="#" onclick="showPanel('inquiries'); return false;">View All</a>
+                  <a href="404.html" onclick="showPanel('inquiries'); return false;">View All</a>
                 </div>
                 <div class="dash-list" id="latestInquiries"></div>
               </div>
@@ -91,9 +81,20 @@
                   <h2>My Listings</h2>
                   <p>Properties you have listed on Stackly.</p>
                 </div>
-                <a href="#" class="btn btn-primary" onclick="showPanel('add'); return false;">+ Add Listing</a>
+                <a href="404.html" class="btn btn-primary" onclick="showPanel('add'); return false;">+ Add Listing</a>
               </div>
+              <div class="dash-stats">
+                <div class="dash-stat"><div class="ds-icon">🏢</div><strong id="lstTotal">0</strong><span>Total Listings</span></div>
+                <div class="dash-stat"><div class="ds-icon">👁️</div><strong id="lstViews">0</strong><span>Total Views</span></div>
+                <div class="dash-stat"><div class="ds-icon">✅</div><strong id="lstActive">0</strong><span>Active</span></div>
+                <div class="dash-stat"><div class="ds-icon">✉️</div><strong id="lstInquiries">0</strong><span>Inquiries</span></div>
+              </div>
+
               <div class="dash-panel">
+                <div class="dash-panel-head">
+                  <h3>Your Portfolios</h3>
+                  <a href="404.html">Export Report →</a>
+                </div>
                 <div class="dash-table-wrap">
                   <table class="dash-table">
                     <thead>
@@ -101,6 +102,31 @@
                     </thead>
                     <tbody id="listingsTable"></tbody>
                   </table>
+                </div>
+              </div>
+
+              <div class="dash-metric-row">
+                <div class="dash-metric"><strong>📈 Avg. Views per Listing</strong><span>Your listings average 48 views and 6 shortlists each week after the first month of publish.</span></div>
+                <div class="dash-metric"><strong>💡 Refresh Often</strong><span>Updating photos or the price refreshes your listing's visibility and can boost views by up to 40%.</span></div>
+              </div>
+
+              <div class="dash-panel">
+                <div class="dash-panel-head">
+                  <h3>Quick Tips</h3>
+                </div>
+                <div class="dash-list">
+                  <div class="dash-item">
+                    <div class="dash-item-icon">📸</div>
+                    <div class="dash-item-body"><strong>Use High-Quality Photos</strong><span>Listings with 8+ clear photos receive 3× more inquiries.</span></div>
+                  </div>
+                  <div class="dash-item">
+                    <div class="dash-item-icon">💰</div>
+                    <div class="dash-item-body"><strong>Price It Right</strong><span>Compare similar active listings in your city before setting the price.</span></div>
+                  </div>
+                  <div class="dash-item">
+                    <div class="dash-item-icon">⏱️</div>
+                    <div class="dash-item-body"><strong>Respond Fast</strong><span>Agents who reply within 24 hours convert 2× more inquiries into site visits.</span></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -197,11 +223,162 @@
                 </div>
               </div>
             </div>
+
+            <!-- My Profile -->
+            <div id="panelProfile" style="display:none;">
+              <div class="dash-head">
+                <div>
+                  <h2>My Profile</h2>
+                  <p>Your public agent/broker profile and account settings.</p>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="saveProfile(); return false;">Save Changes</button>
+              </div>
+
+              <div class="dash-panel">
+                <div class="dash-panel-head">
+                  <h3>Account Details</h3>
+                </div>
+                <div class="auth-form" style="display:flex;flex-direction:column;gap:14px;">
+                  <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+                    <div>
+                      <label class="form-label" for="profName">Full Name</label>
+                      <input type="text" id="profName" class="form-input" placeholder="e.g. Arun Kumar">
+                    </div>
+                    <div>
+                      <label class="form-label" for="profEmail">Email</label>
+                      <input type="email" id="profEmail" class="form-input" placeholder="you@example.com">
+                    </div>
+                  </div>
+                  <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+                    <div>
+                      <label class="form-label" for="profPhone">Phone</label>
+                      <input type="tel" id="profPhone" class="form-input" placeholder="+91 00000 00000">
+                    </div>
+                    <div>
+                      <label class="form-label" for="profCity">Base City</label>
+                      <select id="profCity" class="form-input">
+                        <option value="">Select City</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Bengaluru">Bengaluru</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Coimbatore">Coimbatore</option>
+                        <option value="Kochi">Kochi</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <label class="form-label" for="profBio">About / Bio</label>
+                    <textarea id="profBio" rows="3" class="form-input" placeholder="Tell buyers about your experience and specialist areas."></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dash-metric-row">
+                <div class="dash-metric"><strong>🛡️ Verified Agent</strong><span>Your account is verified by Stackly. Verified agents get up to 3× more buyer inquiries.</span></div>
+                <div class="dash-metric"><strong>⭐ 4.9 Average Rating</strong><span>Based on 126 buyer reviews across your past deals.</span></div>
+              </div>
+
+              <div class="dash-panel">
+                <div class="dash-panel-head">
+                  <h3>Account Actions</h3>
+                </div>
+                <div class="dash-actions">
+                  <button type="button" class="btn btn-outline" onclick="showToast('Password reset link sent to your email.'); return false;">Reset Password</button>
+                  <button type="button" class="btn btn-outline" onclick="showToast('Notification preferences saved (coming soon).'); return false;">Notification Settings</button>
+                  <a href="#" class="btn btn-outline" onclick="logout(); return false;" style="color:#f87171;">Logout</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <section class="newsletter-section" id="newsletter">
+    <div class="container">
+      <div class="newsletter-card">
+        <h2>Stay Ahead of the Property Market</h2>
+        <p>Get new property listings, market insights, and commercial real-estate updates directly in your inbox.</p>
+        <div class="newsletter-form">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email address">
+          <button class="btn btn-primary" id="newsletterBtn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid more">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <a href="index.html"><img src="images/logo.webp" alt="Stackly Technogic" class="footer-logo-img"></a>
+          </div>
+          <p>Smart commercial real estate solutions for businesses, investors, and property owners.</p>
+          <div class="footer-social">
+            <a href="404.html" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="404.html" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.77 7.74L23.2 22h-6.23l-4.88-6.38L6.5 22H3.35l7.24-8.28L1 2h6.39l4.41 5.83L18.9 2Zm-1.08 18.13h1.72L6.9 3.78H5.06l12.76 16.35Z"/></svg></a>
+            <a href="404.html" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07ZM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.88 5.88 0 0 0-2.13 1.38A5.88 5.88 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.8.72 1.47 1.38 2.13a5.88 5.88 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 0 0 2.13-1.38 5.88 5.88 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.88 5.88 0 0 0-1.38-2.13A5.88 5.88 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0Zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84Zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4Zm6.41-11.85a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44Z"/></svg></a>
+            <a href="404.html" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67h-3.56V9h3.42v1.56h.05a3.75 3.75 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="listings.html">Properties</a></li>
+            <li><a href="locations.html">Locations</a></li>
+            <li><a href="agents.html">Agents</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Property Types</h4>
+          <ul>
+            <li><a href="listings.html">Office</a></li>
+            <li><a href="listings.html">Retail</a></li>
+            <li><a href="listings.html">Warehouse</a></li>
+            <li><a href="listings.html">Industrial</a></li>
+            <li><a href="listings.html">Business Park</a></li>
+            <li><a href="listings.html">Land</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:info@stacklytechnogic.com">info@stacklytechnogic.com</a></li>
+            <li><a href="tel:+919840012345">+91 98400 12345</a></li>
+            <li class="wide-line">No. 12, Business Avenue, Anna Salai, Chennai</li>
+          </ul>
+          <h4 style="margin-top:22px;">Working Hours</h4>
+          <ul class="footer-hours">
+            <li>Mon–Sat · 9:00 AM – 7:00 PM</li>
+            <li>Sunday · Closed</li>
+          </ul>
+        </div>
+        <div class="footer-links footer-news">
+          <h4>Newsletter</h4>
+          <p>Market insights and new listings, straight to your inbox.</p>
+          <div class="footer-news-form">
+            <input type="email" id="footerNLInput" placeholder="Your email address">
+            <button class="btn btn-primary" onclick="subscribeFooter(); return false;">Join</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Stackly. All Rights Reserved.</p>
+        <div class="footer-legal">
+          <a href="404.html">Privacy Policy</a><span>|</span><a href="404.html">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
   <script>
@@ -217,7 +394,7 @@
     }
 
     function showPanel(id) {
-      ['overview','listings','inquiries','add'].forEach(p => document.getElementById('panel' + p.charAt(0).toUpperCase() + p.slice(1)).style.display = 'none');
+      ['overview','listings','inquiries','add','profile'].forEach(p => document.getElementById('panel' + p.charAt(0).toUpperCase() + p.slice(1)).style.display = 'none');
       document.getElementById('panel' + id.charAt(0).toUpperCase() + id.slice(1)).style.display = 'block';
       document.querySelectorAll('.dash-nav a').forEach(a => a.classList.remove('active'));
       document.getElementById('dashNav' + id.charAt(0).toUpperCase() + id.slice(1)).classList.add('active');
@@ -227,13 +404,20 @@
     document.getElementById('dashNavListings').addEventListener('click', () => { showPanel('listings'); renderListings(); });
     document.getElementById('dashNavInquiries').addEventListener('click', () => { showPanel('inquiries'); renderInquiries(); });
     document.getElementById('dashNavAdd').addEventListener('click', () => showPanel('add'));
+    document.getElementById('dashNavProfile').addEventListener('click', () => { showPanel('profile'); populateProfile(); });
 
     function renderListings() {
       const mine = getAgentListings();
       const tbody = document.getElementById('listingsTable');
-      document.getElementById('statListings').textContent = mine.length || properties.length;
-      document.getElementById('statViews').textContent = (mine.length || properties.length) * 45 + 120;
-      document.getElementById('statLeads').textContent = Math.min(Math.ceil((mine.length || properties.length) / 2), 24);
+      const count = mine.length || properties.length;
+      const views = count * 45 + 120;
+      document.getElementById('statListings').textContent = count;
+      document.getElementById('statViews').textContent = views;
+      document.getElementById('statLeads').textContent = Math.min(Math.ceil(count / 2), 24);
+      document.getElementById('lstTotal').textContent = count;
+      document.getElementById('lstViews').textContent = views;
+      document.getElementById('lstActive').textContent = mine.length ? mine.filter(p => (p.status || 'Active') !== 'Inactive').length : count;
+      document.getElementById('lstInquiries').textContent = getInquiries().length || Math.min(Math.ceil(count * 2), 18);
       if (!mine.length) {
         tbody.innerHTML = `<tr><td colspan="6" style="color:var(--gray);text-align:center;padding:20px;">No listings yet. <a href="#" style="color:var(--primary);font-weight:700;" onclick="showPanel('add'); return false;">Add your first listing →</a></td></tr>`;
         return;
@@ -272,7 +456,7 @@
           <td>${q.property}</td>
           <td>${new Date(q.date).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' })}</td>
           <td><span class="dash-badge db-pending">Awaiting Response</span></td>
-          <td><span class="dash-item-action"><a href="contact.html">Reply →</a></span></td>
+          <td><span class="dash-item-action"><a href="404.html">Reply →</a></span></td>
         </tr>`);
       tbody.innerHTML = rows.join('') + '<tr><td colspan="5" style="color:var(--gray);text-align:center;padding:16px;">New inquiries will appear here once buyers contact your listings.</td></tr>';
     }
@@ -289,7 +473,7 @@
           <div class="dash-item-icon">${q.i}</div>
           <div class="dash-item-body"><strong>${q.t}</strong><span>${q.s}</span></div>
           <div class="dash-item-time">Today</div>
-          <div class="dash-item-action"><a href="contact.html">Reply →</a></div>
+          <div class="dash-item-action"><a href="404.html">Reply →</a></div>
         </div>`).join('');
     }
 
@@ -317,24 +501,61 @@
       renderListings();
     });
 
+    function getProfile() { try { return JSON.parse(localStorage.getItem('st_agent_profile') || '{}'); } catch (e) { return {}; } }
+
+    function populateProfile() {
+      const session = getSession();
+      const prof = getProfile();
+      const name = prof.name || (session && session.name) || 'Agent User';
+      const email = prof.email || (session && session.email) || 'agent@stacklytechnogic.com';
+      document.getElementById('profName').value = name;
+      document.getElementById('profEmail').value = email;
+      document.getElementById('profPhone').value = prof.phone || '';
+      if (prof.city) document.getElementById('profCity').value = prof.city;
+      document.getElementById('profBio').value = prof.bio || '';
+    }
+
+    function saveProfile() {
+      const prof = {
+        name: document.getElementById('profName').value.trim(),
+        email: document.getElementById('profEmail').value.trim(),
+        phone: document.getElementById('profPhone').value.trim(),
+        city: document.getElementById('profCity').value,
+        bio: document.getElementById('profBio').value.trim()
+      };
+      if (!prof.name || !prof.email) { showToast('Please fill in at least your name and email.'); return; }
+      localStorage.setItem('st_agent_profile', JSON.stringify(prof));
+      document.getElementById('dashName').textContent = prof.name;
+      document.getElementById('dashEmail').textContent = prof.email;
+      document.getElementById('dashAvatar').textContent = prof.name.trim().split(/\s+/).map(w => w[0]).join('').toUpperCase().slice(0, 2) || 'AG';
+      showToast('Profile saved successfully.');
+    }
+
+    function subscribeFooter() {
+      const input = document.getElementById('footerNLInput');
+      const email = (input.value || '').trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('Please enter a valid email address.'); return; }
+      input.value = '';
+      showToast('Subscribed! You will hear from us soon.');
+    }
+
     (function init() {
       const session = getSession();
-      const gate = document.getElementById('authGate');
       const content = document.getElementById('dashContent');
       if (!session) {
-        gate.style.display = 'flex';
         content.style.display = 'none';
         document.querySelector('.dash-nav').style.display = 'none';
         return;
       }
-      gate.style.display = 'none';
       content.style.display = 'block';
-      const name = session.name || 'Agent User';
-      const email = session.email || 'agent@stacklytechnogic.com';
+      const prof = getProfile();
+      const name = prof.name || session.name || 'Agent User';
+      const email = prof.email || session.email || 'agent@stacklytechnogic.com';
       document.getElementById('dashName').textContent = name;
       document.getElementById('dashEmail').textContent = email;
       document.getElementById('dashAvatar').textContent = name.trim().split(/\s+/).map(w => w[0]).join('').toUpperCase().slice(0, 2) || 'AG';
       document.getElementById('overviewTitle').textContent = 'Welcome back, ' + name;
+      populateProfile();
       renderListings();
       renderInquiries();
       renderLatestInquiries();
